@@ -1,0 +1,155 @@
+﻿@model LabourTimeTable.Models.ts_timesheet
+
+@{
+    ViewBag.Title = "Activity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+    <div class="page-content-wrapper">
+
+        <div class="page-content">
+            <h1 class="page-title">Activity
+			   
+				<small>Manage Activity</small>
+            </h1>
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="javascript:;"></a>
+                    </li>
+                    <li>
+                        <span>@DateTime.UtcNow.ToLongDateString()</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-social-dribbble font-red"></i>
+                        <span class="caption-subject font-red bold uppercase">Manage Other Activity</span>
+                    </div>
+                    <div class="actions">
+                        <a href="~/Others/Index">Back</a>
+                    </div>
+                </div>
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger display-hide" style="display: block;">
+                        <button class="close" data-close="alert"></button>
+                        <span>@ViewBag.Error </span>
+                    </div>
+                }
+
+
+                <div class="well">
+                    <!-- BEGIN FORM-->
+                    <form method="post" id="form" class="form-horizontal">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Activity Name</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtActivityName" id="txtActivityName" value="@Model.purpose" autocomplete="off" disabled="disabled" placeholder="Complain No" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Enquairy No</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtEnquairyNo" id="txtEnquairyNo"  value="@Model.job_no"  autocomplete="off" placeholder="Job No" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group" style="display: none;">
+                                <div class="col-md-4">
+                                    <input type="text" name="txtgroupId" id="txtgroupId"  value="@Model.groupid"  autocomplete="off"  placeholder="Job No" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Customer</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtCustomer" id="txtCustomer" value="@Model.cust_name" autocomplete="off" disabled="disabled" placeholder="Customer" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Start Time</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtStartTime" id="txtStartTime" value="@Model.checkin" autocomplete="off" disabled="disabled" placeholder="Customer" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">End Time</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtEndTime" id="txtEndTime" value="@Model.checkout" autocomplete="off" disabled="disabled" placeholder="Customer" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Remarks</label>
+                                <div class="col-md-4">
+                                    <textarea rows="4" cols="50" class="form-control" style="resize: none;" id="txtRemarks" name="txtRemarks" placeholder="Remarks"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" id="btnSave" class="btn green">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .autocomplete-items {
+        height: 200px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: absolute;
+        padding: 0px 0px 0px 15px;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+            .autocomplete-items div:hover {
+                /*when hovering an item:*/
+                background-color: DodgerBlue !important;
+                color: #ffffff;
+            }
+
+    .autocomplete-active {
+        /*when navigating through the items using the arrow keys:*/
+        background-color: DodgerBlue !important;
+        color: #ffffff;
+    }
+
+    .Outsourcing {
+        display: none;
+    }
+
+    .clickable {
+        cursor: pointer;
+        background: #ffff99;
+    }
+
+    .loader {
+        display: none;
+    }
+</style>

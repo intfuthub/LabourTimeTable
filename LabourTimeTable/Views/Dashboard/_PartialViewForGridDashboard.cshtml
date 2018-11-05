@@ -1,0 +1,80 @@
+﻿@model LabourTimeTable.Models.DashboardDTO
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = null;
+}
+@{
+    var grid = new WebGrid(Model._DashboardGridDTO, canPage: true, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div class="table-responsive">
+    @grid.GetHtml(tableStyle: "table table-striped table-bordered table-hover dataTable no-footer dtr-inline",
+                    mode: WebGridPagerModes.All,
+                    htmlAttributes: new { id = "grid" },
+                    firstText: "First",
+                    previousText: "Prev",
+                    nextText: "Next",
+                    lastText: "Last",
+                    footerStyle: "table-pager",
+                    columns: grid.Columns(grid.Column("jobno", "Job No", format: @<text><a data-value='@item.jobno' data-value2='@item.jobdate' data-value3='@item.SystemName' data-value4='@item.activity' data-value5='@item.qty_item' data-value6='@item.fromtime' data-value7='@item.totime' data-value8='@item.jobsystemId' href='javascript:;' id="btnActivity"  class='Form-Control'>@item.jobno</a> </text>),
+                    grid.Column("Date", format: (item) => string.Format("{0:dd/MM/yyyy}", item.jobdate)),
+                    grid.Column("SystemName", "System Name"),
+                    grid.Column("activity", "Activity"),
+                    grid.Column("Notes", "Notes"),
+                    grid.Column("qty_item", "Work Done")
+                    
+                    
+        ))
+
+</div>
+
+
+<style>
+    .table-responsive table {
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+    }
+
+        .table-responsive table th {
+            background-color: #B8DBFD;
+            border: 1px solid #ccc;
+        }
+
+            .table-responsive table th td {
+                border: 1px solid #ccc;
+            }
+</style>
+
+<script>
+    $("body").on("click", "#btnActivity", (function (e) {
+
+        var $this = $(this);
+        var value = $this.data('value');
+        var value2 = $this.data('value2');
+        var value3 = $this.data('value3');
+        var value4 = $this.data('value4');
+        var value5 = $this.data('value5');
+        var value6 = $this.data('value6');
+        var value7 = $this.data('value7');
+        var value8 = $this.data('value8');
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("EmployeeWorked", "Dashboard")',
+            data: JSON.stringify({ 'JobNo': value, 'jobdate': value2, 'SystemName': value3, 'activity': value4, 'qty_item': value5, 'fromtime': value6, 'totime': value7, 'jobsystemId': value8 }),
+            contentType: "application/json; charset=utf-8",
+            dataType: 'html',
+            async: true,
+            success: function (result) {
+                e.preventDefault();
+                $('#responsive').html(result);
+                $('#responsive').modal('show');
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
+    }));
+
+</script>

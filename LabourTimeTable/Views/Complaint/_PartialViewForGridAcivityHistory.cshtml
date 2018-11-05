@@ -1,0 +1,42 @@
+﻿@model LabourTimeTable.Models.ActivityHistoryDTO
+@{
+    Layout = null;
+}
+@{
+    var grid = new WebGrid(Model._WorkInProgress, canPage: true, canSort: true, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div class="table-responsive">
+    @grid.GetHtml(tableStyle: "table table-striped table-bordered table-hover dataTable no-footer dtr-inline",
+                                mode: WebGridPagerModes.All,
+                                  htmlAttributes: new { id = "grid" },
+                                firstText: "First",
+                                previousText: "Prev",
+                                nextText: "Next",
+                                lastText: "Last",
+                                footerStyle: "table-pager",
+                                columns: grid.Columns(
+                                grid.Column("com_no", "Name"),
+                                grid.Column("reason", "Reason"),
+                                grid.Column("NoOfAttempts", "Attempts")))
+                              
+
+</div>
+
+<style>
+    .table-responsive table {
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+    }
+
+        .table-responsive table th {
+            background-color: #B8DBFD;
+            border: 1px solid #ccc;
+        }
+
+            .table-responsive table th td {
+                border: 1px solid #ccc;
+            }
+</style>
+

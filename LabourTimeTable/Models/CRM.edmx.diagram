@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8abb1ca98325433ca04532f4702998f7" Name="Diagram1" ZoomLevel="101">
+        <EntityTypeShape EntityType="InterfutureModel.employee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="InterfutureModel.enq_mast" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="InterfutureModel.enq_tran" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="InterfutureModel.joblabcost" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="InterfutureModel.joblabwork" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="InterfutureModel.OutSourceDetail" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="InterfutureModel.JobLabWorkTemp" Width="1.5" PointX="4.75" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="InterfutureModel.empTmp" Width="1.5" PointX="6.75" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="InterfutureModel.jobplanday" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="InterfutureModel.JobDailyProduction" Width="1.5" PointX="2.75" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="InterfutureModel.joblabworkemp" Width="1.5" PointX="3.8909776061265622" PointY="31.113811701123517" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,137 @@
+﻿@model IEnumerable<LabourTimeTable.Models.ExceptionModelDTO>
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = null;
+}
+
+@{
+    var grid = new WebGrid(Model, canPage: true, canSort: true, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    grid.Pager(WebGridPagerModes.All);
+}
+<div class="table-responsive">
+    @grid.GetHtml(tableStyle: "table table-striped table-bordered table-hover dataTable no-footer dtr-inline",
+                    mode: WebGridPagerModes.All,
+                    htmlAttributes: new { id = "grid" },
+                    firstText: "First",
+                    previousText: "Prev",
+                    nextText: "Next",
+                    lastText: "Last",
+                    footerStyle: "table-pager",
+                    columns: grid.Columns(
+                    grid.Column(header: "No.", format: item => item.WebGrid.Rows.IndexOf(item) + 1
+                    + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage)
+                    * grid.RowsPerPage * grid.PageIndex),
+                    grid.Column("_TimesheetGridDTO.empname", "Name"),
+                    grid.Column("_TimesheetGridDTO.time", "Time"),
+                    grid.Column(format: (item) =>
+                    {
+                    WebGrid subGrid = new WebGrid(source: item._TimesheetGridDTOList, ajaxUpdateContainerId: "subT", canSort: false);
+                    return subGrid.GetHtml(
+                    htmlAttributes: new { id = "subT" },
+                    columns: subGrid.Columns(
+                    grid.Column("job_no", "Job No"),
+                    grid.Column("Date", format: (itemx) => string.Format("{0:dd/MM/yyyy}", itemx.date)),
+                    grid.Column("Checkin", format: (itemx) => string.Format("{0}", itemx.checkin == null ? "" : Convert.ToDateTime(itemx.checkin).ToString("hh:mm tt"))),
+                    grid.Column("Checkout", format: (itemx) => string.Format("{0}", itemx.checkout == null ? "" : Convert.ToDateTime(itemx.checkout).ToString("hh:mm tt"))),
+                    grid.Column("Time", "Hours")
+                        ));
+                    })
+                ))
+
+</div>
+
+<style>
+    .table-responsive table {
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+    }
+
+        .table-responsive table th {
+            background-color: #B8DBFD;
+            border: 1px solid #ccc;
+        }
+
+            .table-responsive table th td {
+                border: 1px solid #ccc;
+            }
+</style>
+<style>
+    th, td {
+        padding: 5px;
+    }
+
+    th {
+        background-color: rgb(248, 248, 248);
+    }
+
+    #gridT, #gridT tr {
+        border: 1px solid #0D857B;
+    }
+
+    #subT, #subT tr {
+        border: 1px solid #f3f3f3;
+    }
+
+    #subT {
+        margin: 0px 0px 0px 10px;
+        padding: 5px;
+        width: 95%;
+    }
+
+        #subT th {
+            font-size: 12px;
+        }
+
+    .hoverEff {
+        cursor: pointer;
+    }
+
+        .hoverEff:hover {
+            background-color: rgb(248, 242, 242);
+        }
+
+    .expand {
+        background-image: url(/Images/pm.png);
+        background-position-x: -22px;
+        background-repeat: no-repeat;
+    }
+
+    .collapse {
+        background-image: url(/Images/pm.png);
+        background-position-x: -2px;
+        background-repeat: no-repeat;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        var size = $("#main #gridT > thead > tr >th").size(); // get total column
+        $("#main #gridT > thead > tr >th").last().remove(); // remove last column
+        $("#main #gridT > thead > tr").prepend("<th></th>"); // add one column at first for collapsible column
+        $("#main #gridT > tbody > tr").each(function (i, el) {
+            $(this).prepend(
+                $("<td></td>")
+                    .addClass("expand")
+                    .addClass("hoverEff")
+                    .attr('title', "click for show/hide")
+            );
+
+            //Now get sub table from last column and add this to the next new added row
+            var table = $("table", this).parent().html();
+            //add new row with this subtable
+            $(this).after("<tr><td></td><td style='padding:5px; margin:0px;' colspan='" + (size - 1) + "'>" + table + "</td></tr>");
+            $("table", this).parent().remove();
+            // ADD CLICK EVENT FOR MAKE COLLAPSIBLE
+            $(".hoverEff", this).live("click", function () {
+                $(this).parent().closest("tr").next().slideToggle(100);
+                $(this).toggleClass("expand collapse");
+            });
+        });
+
+        //by default make all subgrid in collapse mode
+        $("#main #gridT > tbody > tr td.expand").each(function (i, el) {
+            $(this).toggleClass("expand collapse");
+            $(this).parent().closest("tr").next().slideToggle(100);
+        });
+
+    });
+</script>

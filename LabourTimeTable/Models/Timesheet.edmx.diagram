@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d087bfff9e84687bc16b5e37faf1ae7" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="intfut_timesheetModel.employee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.enq_mast" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.enq_tran" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.JobDailyProduction" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.joblabcost" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.joblabwork" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.OutSourceDetail" Width="1.5" PointX="2.75" PointY="2.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.JobLabWorkTemp" Width="1.5" PointX="2.75" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.jobplanday" Width="1.5" PointX="6.75" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.ts_employee" Width="1.5" PointX="4.75" PointY="2.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.ts_user" Width="1.5" PointX="6.75" PointY="2.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.empTmp" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.joblabworkemp" Width="1.5" PointX="4.75" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.complaint" Width="1.5" PointX="8.75" PointY="2.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.complaintname" Width="1.5" PointX="0.75" PointY="3" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.complainttype" Width="1.5" PointX="2.75" PointY="3" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.contact" Width="1.5" PointX="4.75" PointY="3" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.customer" Width="1.5" PointX="6.75" PointY="3" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.WorkInProgress" Width="1.5" PointX="8.75" PointY="3" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.ts_timesheet_com" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.ac_system" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.ac_dept" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.activitysub" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.ts_timesheet_enq" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.ts_place" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.ts_emirates_id" Width="1.5" PointX="2.75" PointY="4.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="intfut_timesheetModel.ts_timesheet" Width="1.5" PointX="8.75" PointY="1.5" IsExpanded="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

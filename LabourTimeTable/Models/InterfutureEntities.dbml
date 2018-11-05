@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="intfut_timesheet" Class="Intfut_timesheet" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.ac_dept" Member="Ac_dept">
+    <Type Name="Ac_dept">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ac_name" Member="Ac_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ac_system" Member="Ac_system">
+    <Type Name="Ac_system">
+      <Column Name="ac_code" Member="Ac_code" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ac_name" Member="Ac_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="cost" Member="Cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Inactive" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="ifcheck" Member="Ifcheck" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.activitysub" Member="Activitysub">
+    <Type Name="Activitysub">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ac_name" Member="Ac_name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ac_group" Member="Ac_group" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.complaint" Member="Complaint">
+    <Type Name="Complaint">
+      <Column Name="com_no" Member="Com_no" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="trandate" Member="Trandate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="com_date" Member="Com_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="com_source" Member="Com_source" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="com_job" Member="Com_job" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ac_code" Member="Ac_code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="com_name" Member="Com_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="com_id" Member="Com_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="com_narration" Member="Com_narration" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="com_type" Member="Com_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ac_sub" Member="Ac_sub" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="com_person" Member="Com_person" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="com_phone" Member="Com_phone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="com_rec_by" Member="Com_rec_by" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="com_iss_to" Member="Com_iss_to" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="com_iss_time" Member="Com_iss_time" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="com_status" Member="Com_status" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobsystemId" Member="JobsystemId" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="enq_no" Member="Enq_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="date_done" Member="Date_done" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cust_rep" Member="Cust_rep" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Sheetno" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="techproblem" Member="Techproblem" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="techsolution" Member="Techsolution" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Priority" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="doc_level" Member="Doc_level" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="doc_status" Member="Doc_status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="user_name" Member="User_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="remarks" Member="Remarks" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Job_name" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IsOldJob" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="com_Amount" Member="Com_Amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Credit" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="doc_noNew" Member="Doc_noNew" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.complaintname" Member="Complaintname">
+    <Type Name="Complaintname">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ac_code" Member="Ac_code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ac_name" Member="Ac_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ac_group" Member="Ac_group" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.complainttype" Member="Complainttype">
+    <Type Name="Complainttype">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ac_name" Member="Ac_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ac_type" Member="Ac_type" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.contact" Member="Contact">
+    <Type Name="Contact">
+      <Column Name="ac_sub" Member="Ac_sub" Type="System.Decimal" DbType="Decimal(25,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ac_code" Member="Ac_code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Empname" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Ac_name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Designation" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Deptname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Influence" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Telno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Mobno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Faxno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Voip" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Company" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="jobno" Member="Jobno" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.customer" Member="Customer">
+    <Type Name="Customer">
+      <Column Name="AC_CODE" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AC_NAME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_BAL" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="AC_ADDRESS" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="AC_POBOX" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_CITYID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AC_CITY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_COUNTRYID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AC_COUNTRY" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_TELE1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_TELE2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_MOBNO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_FAXNO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_CONTACT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_WEBSITE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AC_TERMS" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="AC_TYPE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AC_SMAN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ctype" Member="Ctype" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DISC_PER" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SHIP_TO" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Nonactive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="War_Type" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PassExcel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="AccCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CostType" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="bool" Member="Bool" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="id" Member="Id" Type="System.Decimal" DbType="Decimal(18,8)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.employee" Member="Employee">
+    <Type Name="Employee">
+      <Column Name="empID" Member="EmpID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ac_code" Member="Ac_code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="empname" Member="Empname" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Firstname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Middlename" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Lastname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="JoinDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nationality" Member="Nationality" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="jobID" Member="JobID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="emptypeID" Member="EmptypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmptypeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DesignationId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CompanyId" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="DeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workname" Member="Workname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="workID" Member="WorkID" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="workType" Member="WorkType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="GradeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="salary" Member="Salary" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="starmark" Member="Starmark" Type="System.String" DbType="NChar(1)" CanBeNull="true" />
+      <Column Name="status" Member="Status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Inactive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="jobend" Member="Jobend" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FileNo" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="PassportNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PassportIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PassportExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LaborNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LaborIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LaborExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="VisaNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="VisaIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="VisaExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EmidNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EmidIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EmidExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HealthNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HealthIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HealthExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DrivingLicNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DrivingLicIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DrivingLicExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DrivingLicType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LabRegDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WorkcountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkAddress1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="WorkAddress2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="WorkCity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkState" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkCountry" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkPostbox" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkTelno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkMobno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomecountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HomeAddress1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="HomeAddress2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="HomeCity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomeState" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomeCountry" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomePostBox" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomeTelno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomeMobno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Salary_Basic" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Salary_Hra" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Salary_Transport" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Salary_Other" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Airticket" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BankTransfer" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LaborRegDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Bankno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Bankname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IncrementDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IncrementAmount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="IncrementReason" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Imagepath" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="intersa.empTmp" Member="Intersa_EmpTmp">
+    <Type Name="Intersa_EmpTmp">
+      <Column Name="id" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkId" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EmpName" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="groupId" Member="GroupId" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.enq_mast" Member="Enq_mast">
+    <Type Name="Enq_mast">
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="doc_date" Member="Doc_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="doc_rev" Member="Doc_rev" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="custTypeId" Member="CustTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ac_code" Member="Ac_code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="CustName" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
+      <Column Name="owner_code" Member="Owner_code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="owner_name" Member="Owner_name" Type="System.String" DbType="NVarChar(75)" CanBeNull="true" />
+      <Column Name="contactId" Member="ContactId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Inv_Code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="reqNatureId" Member="ReqNatureId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reqNatureName" Member="ReqNatureName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tpc_yn" Member="Tpc_yn" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="tpc_cust" Member="Tpc_cust" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="tpc_per" Member="Tpc_per" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="tpc_amt" Member="Tpc_amt" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="enq_source" Member="Enq_source" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="enq_rct_by" Member="Enq_rct_by" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="enq_re" Member="Enq_re" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="enq_se" Member="Enq_se" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="enq_se_date" Member="Enq_se_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="enq_est_date" Member="Enq_est_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="enq_job_date" Member="Enq_job_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="enq_qot_date" Member="Enq_qot_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="qot_rct_by" Member="Qot_rct_by" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="qot_rct_date" Member="Qot_rct_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="qot_no" Member="Qot_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="qot_date" Member="Qot_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="qot_amt" Member="Qot_amt" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="remarks1" Member="Remarks1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="remarks2" Member="Remarks2" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="job_name" Member="Job_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ref_no" Member="Ref_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tselect" Member="Tselect" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="enq_level" Member="Enq_level" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="enq_status" Member="Enq_status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="user_name" Member="User_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ord_no" Member="Ord_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ord_date" Member="Ord_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ext_job" Member="Ext_job" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="complaintno" Member="Complaintno" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="reasonId" Member="ReasonId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="reason" Member="Reason" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="job_status" Member="Job_status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="enq_read" Member="Enq_read" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="enq_typeId" Member="Enq_typeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tstkamt" Member="Tstkamt" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="plotno" Member="Plotno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProjectTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="enq_level_old" Member="Enq_level_old" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="enq_status_old" Member="Enq_status_old" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="mat_cost" Member="Mat_cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="lab_cost" Member="Lab_cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="disc_fix" Member="Disc_fix" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="lpo_no" Member="Lpo_no" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="pay_terms" Member="Pay_terms" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Inactive" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="ColorId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="jobdecline_date" Member="Jobdecline_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="jobopen_date" Member="Jobopen_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="jobhand_date" Member="Jobhand_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="jobclose_date" Member="Jobclose_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="jobwarranty_date" Member="Jobwarranty_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Mod_job" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Amtpay" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="AmtpayVout" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Credit" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="EngStatuse" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Edit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MainsFrom_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MainsTo_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TenderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TenderRemark" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="QPrint" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserQPrint" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OpitnQt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EnqExtintion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DefectLiabilityDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.enq_tran" Member="Enq_tran">
+    <Type Name="Enq_tran">
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="doc_date" Member="Doc_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="qot_no" Member="Qot_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ord_no" Member="Ord_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobsystemId" Member="JobsystemId" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="jobsystemname" Member="Jobsystemname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="tstkgross" Member="Tstkgross" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="disc_per" Member="Disc_per" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="disc_fix" Member="Disc_fix" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="margin_per" Member="Margin_per" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="tstkamt" Member="Tstkamt" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="tstkcp" Member="Tstkcp" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="tstkdttrn" Member="Tstkdttrn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tcustcode" Member="Tcustcode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="tstkref" Member="Tstkref" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mat_cost" Member="Mat_cost" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="lab_cost" Member="Lab_cost" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="mat_per" Member="Mat_per" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="lab_per" Member="Lab_per" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="startdate1" Member="Startdate1" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="startdate2" Member="Startdate2" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="startdate3" Member="Startdate3" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="mat_del_date" Member="Mat_del_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="job_hand_date" Member="Job_hand_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="show1" Member="Show1" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="show2" Member="Show2" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="show3" Member="Show3" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="flaage" Member="Flaage" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="canceled" Member="Canceled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="transfer" Member="Transfer" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RemarkMod" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Replacement" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="FlageFinish" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Edit" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MainsFrom_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MainsTo_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="del_per" Member="Del_per" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="del_amount" Member="Del_amount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JobDailyProduction" Member="JobDailyProduction">
+    <Type Name="JobDailyProduction">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobsystemId" Member="JobsystemId" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="jobno" Member="Jobno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Jobcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="job_per" Member="Job_per" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="weight_per" Member="Weight_per" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="taskname" Member="Taskname" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="empcode" Member="Empcode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="qty_man" Member="Qty_man" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="qty_item" Member="Qty_item" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="unit" Member="Unit" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="time_min" Member="Time_min" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="factor" Member="Factor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tot_time_hour" Member="Tot_time_hour" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="hr_cost" Member="Hr_cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="tot_cost" Member="Tot_cost" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="blanklines" Member="Blanklines" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="srno" Member="Srno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="flageTrans" Member="FlageTrans" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="flagecancel" Member="Flagecancel" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="flagereplese" Member="Flagereplese" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="flageEdit" Member="FlageEdit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="flageFix" Member="FlageFix" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlanQty" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PlanDay" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="QtyDone" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="FromTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ToTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Updatedate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="joblabcostId" Member="JoblabcostId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ondate" Member="Ondate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="groupid" Member="Groupid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JobDailyProduction_Log" Member="JobDailyProduction_Log">
+    <Type Name="JobDailyProduction_Log">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parentID" Member="ParentID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobsystemId" Member="JobsystemId" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="jobno" Member="Jobno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Jobcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="job_per" Member="Job_per" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="weight_per" Member="Weight_per" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="taskname" Member="Taskname" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="empcode" Member="Empcode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="qty_man" Member="Qty_man" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="qty_item" Member="Qty_item" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="unit" Member="Unit" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="time_min" Member="Time_min" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="factor" Member="Factor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tot_time_hour" Member="Tot_time_hour" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="hr_cost" Member="Hr_cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="tot_cost" Member="Tot_cost" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="blanklines" Member="Blanklines" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="srno" Member="Srno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="flageTrans" Member="FlageTrans" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="flagecancel" Member="Flagecancel" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="flagereplese" Member="Flagereplese" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="flageEdit" Member="FlageEdit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="flageFix" Member="FlageFix" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlanQty" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PlanDay" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="QtyDone" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="FromTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ToTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Updatedate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="joblabcostId" Member="JoblabcostId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ondate" Member="Ondate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="is_active" Member="Is_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.joblabcost" Member="Joblabcost">
+    <Type Name="Joblabcost">
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobsystemId" Member="JobsystemId" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Jobcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="job_per" Member="Job_per" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="weight_per" Member="Weight_per" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="taskname" Member="Taskname" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="empcode" Member="Empcode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="qty_man" Member="Qty_man" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="qty_item" Member="Qty_item" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="unit" Member="Unit" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="time_min" Member="Time_min" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="factor" Member="Factor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tot_time_hour" Member="Tot_time_hour" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="hr_cost" Member="Hr_cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="tot_cost" Member="Tot_cost" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="blanklines" Member="Blanklines" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="srno" Member="Srno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="flageTrans" Member="FlageTrans" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="flagecancel" Member="Flagecancel" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="flagereplese" Member="Flagereplese" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="flageEdit" Member="FlageEdit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="flageFix" Member="FlageFix" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.joblabwork" Member="Joblabwork">
+    <Type Name="Joblabwork">
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobno" Member="Jobno" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobsystemId" Member="JobsystemId" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="qty_item" Member="Qty_item" Type="System.Decimal" DbType="Decimal(18,1)" CanBeNull="true" />
+      <Column Name="rowno" Member="Rowno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="joblabcostId" Member="JoblabcostId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="jobdate" Member="Jobdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FlageMod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="fromtime" Member="Fromtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="totime" Member="Totime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="JobCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="time_min" Member="Time_min" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="activity" Member="Activity" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SystemName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="hr_cost" Member="Hr_cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="qty_man" Member="Qty_man" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="totTime_hrs" Member="TotTime_hrs" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="intersa.joblabwork_Log" Member="Intersa_Joblabwork_Log">
+    <Type Name="Intersa_Joblabwork_Log">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parentId" Member="ParentId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobno" Member="Jobno" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobsystemId" Member="JobsystemId" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="qty_item" Member="Qty_item" Type="System.Decimal" DbType="Decimal(18,1)" CanBeNull="true" />
+      <Column Name="rowno" Member="Rowno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="joblabcostId" Member="JoblabcostId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="jobdate" Member="Jobdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FlageMod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="fromtime" Member="Fromtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="totime" Member="Totime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="JobCode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="time_min" Member="Time_min" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="activity" Member="Activity" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SystemName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="hr_cost" Member="Hr_cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="qty_man" Member="Qty_man" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="totTime_hrs" Member="TotTime_hrs" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="is_active" Member="Is_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="intersa.joblabworkemp" Member="Intersa_Joblabworkemp">
+    <Type Name="Intersa_Joblabworkemp">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobno" Member="Jobno" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobsystemId" Member="JobsystemId" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="jobdate" Member="Jobdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ac_code" Member="Ac_code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="empid" Member="Empid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workid" Member="Workid" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="empname" Member="Empname" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="fromtime" Member="Fromtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="totime" Member="Totime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="groupid" Member="Groupid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="intersa.joblabworkemp_log" Member="Intersa_Joblabworkemp_log">
+    <Type Name="Intersa_Joblabworkemp_log">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobno" Member="Jobno" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobsystemId" Member="JobsystemId" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="jobdate" Member="Jobdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ac_code" Member="Ac_code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="empid" Member="Empid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workid" Member="Workid" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="empname" Member="Empname" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="fromtime" Member="Fromtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="totime" Member="Totime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="groupid" Member="Groupid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="is_active" Member="Is_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="intersa.JobLabWorkTemp" Member="Intersa_JobLabWorkTemp">
+    <Type Name="Intersa_JobLabWorkTemp">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaskName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PlanTime" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Worjtime" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="intersa.jobplanday" Member="Intersa_Jobplanday">
+    <Type Name="Intersa_Jobplanday">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="trandate" Member="Trandate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Jobno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="JobsystemId" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="trantime" Member="Trantime" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Jobcode" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="jobWork" Member="JobWork" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="timealloc" Member="Timealloc" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="JobPlanMonthId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PlanNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OutSourceDetails" Member="OutSourceDetails">
+    <Type Name="OutSourceDetails">
+      <Column Name="id" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="doc_no" Member="Doc_no" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="jobno" Member="Jobno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="jobsystemid" Member="Jobsystemid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="jobdate" Member="Jobdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="noOfOutsource" Member="NoOfOutsource" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fromtime" Member="Fromtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="totime" Member="Totime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="companyName" Member="CompanyName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="intersa.ts_employee" Member="Intersa_Ts_employee">
+    <Type Name="Intersa_Ts_employee">
+      <Column Name="empID" Member="EmpID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ac_code" Member="Ac_code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="empname" Member="Empname" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Firstname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Middlename" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Lastname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="JoinDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NationId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nationality" Member="Nationality" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="jobID" Member="JobID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="emptypeID" Member="EmptypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmptypeName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DesignationId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CompanyId" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="DeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="workname" Member="Workname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="workID" Member="WorkID" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="workType" Member="WorkType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="GradeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="salary" Member="Salary" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="starmark" Member="Starmark" Type="System.String" DbType="NChar(1)" CanBeNull="true" />
+      <Column Name="status" Member="Status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Inactive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="jobend" Member="Jobend" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FileNo" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="PassportNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PassportIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PassportExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LaborNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LaborIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LaborExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="VisaNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="VisaIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="VisaExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EmidNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EmidIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EmidExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HealthNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HealthIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HealthExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DrivingLicNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DrivingLicIssueDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DrivingLicExpiryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DrivingLicType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LabRegDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="WorkcountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkAddress1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="WorkAddress2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="WorkCity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkState" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkCountry" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkPostbox" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkTelno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkMobno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomecountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HomeAddress1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="HomeAddress2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="HomeCity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomeState" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomeCountry" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomePostBox" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomeTelno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomeMobno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Salary_Basic" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Salary_Hra" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Salary_Transport" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Salary_Other" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Airticket" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BankTransfer" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LaborRegDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Bankno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Bankname" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IncrementDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IncrementAmount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="IncrementReason" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Imagepath" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="is_technician" Member="Is_technician" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="is_project_manager" Member="Is_project_manager" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="is_outsourced" Member="Is_outsourced" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="outsourced_company_id" Member="Outsourced_company_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="intersa.ts_place" Member="Intersa_Ts_place">
+    <Type Name="Intersa_Ts_place">
+      <Column Name="id" Member="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ts_timesheet_groupid" Member="Ts_timesheet_groupid" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="latlang" Member="Latlang" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="name" Member="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="adr_address" Member="Adr_address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="formatted_address" Member="Formatted_address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="intersa.ts_timesheet" Member="Intersa_Ts_timesheet">
+    <Type Name="Intersa_Ts_timesheet">
+      <Column Name="id" Member="Id" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="user_id" Member="User_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="emp_id" Member="Emp_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="job_no" Member="Job_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="project_name" Member="Project_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="checkin" Member="Checkin" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="checkout" Member="Checkout" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="time" Member="Time" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="is_outsourced" Member="Is_outsourced" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="outsourced_company_id" Member="Outsourced_company_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="place" Member="Place" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="is_checkout" Member="Is_checkout" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdby" Member="Createdby" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="groupid" Member="Groupid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ondate_created" Member="Ondate_created" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="intersa.ts_timesheet_com" Member="Intersa_Ts_timesheet_com">
+    <Type Name="Intersa_Ts_timesheet_com">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userid" Member="Userid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="emp_id" Member="Emp_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="com_no" Member="Com_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="checkin" Member="Checkin" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="checkout" Member="Checkout" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="time" Member="Time" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="is_outsourced" Member="Is_outsourced" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="outsourced_company_id" Member="Outsourced_company_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="place" Member="Place" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="is_checkout" Member="Is_checkout" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdby" Member="Createdby" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="groupid" Member="Groupid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ondate_created" Member="Ondate_created" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="intersa.ts_timesheet_enq" Member="Intersa_Ts_timesheet_enq">
+    <Type Name="Intersa_Ts_timesheet_enq">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userid" Member="Userid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="emp_id" Member="Emp_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="enq_no" Member="Enq_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="cust_name" Member="Cust_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="project_name" Member="Project_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="department" Member="Department" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="purpose" Member="Purpose" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="checkin" Member="Checkin" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="checkout" Member="Checkout" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="time" Member="Time" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="place" Member="Place" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="remarks" Member="Remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="is_checkout" Member="Is_checkout" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="createdby" Member="Createdby" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="groupid" Member="Groupid" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ondate_created" Member="Ondate_created" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="intersa.ts_user" Member="Intersa_Ts_user">
+    <Type Name="Intersa_Ts_user">
+      <Column Name="id" Member="Id" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="emp_id" Member="Emp_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="username" Member="Username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="password" Member="Password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="name" Member="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="phone" Member="Phone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ondate" Member="Ondate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="isactive" Member="Isactive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WorkInProgress" Member="WorkInProgress">
+    <Type Name="WorkInProgress">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="com_no" Member="Com_no" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="reason" Member="Reason" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NoOfAttempts" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AttendedDate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

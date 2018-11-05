@@ -1,0 +1,84 @@
+﻿@model LabourTimeTable.Models.LabourComplaintDetailDTO
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = null;
+}
+
+@{
+    var grid = new WebGrid(Model._TimesheetComGridPostDTO, canPage: true, canSort: true, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    grid.Pager(WebGridPagerModes.All);
+}
+
+
+
+<div class="table-responsive">
+    @grid.GetHtml(tableStyle: "table table-striped table-bordered table-hover dataTable no-footer dtr-inline",
+                            mode: WebGridPagerModes.All,
+                            htmlAttributes: new { id = "grid" },
+                            firstText: "First",
+                            previousText: "Prev",
+                            nextText: "Next",
+                            lastText: "Last",
+                            footerStyle: "table-pager",
+                            columns: grid.Columns(
+                            grid.Column(header: "No.", format: item => item.WebGrid.Rows.IndexOf(item) + 1
+                            + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage)
+                            * grid.RowsPerPage * grid.PageIndex),
+                            grid.Column("empname", "Name"),
+                            grid.Column("com_no", "Com No"),
+                            grid.Column("Date", format: (item) => string.Format("{0:dd/MM/yyyy}", item.date)),
+                            grid.Column("Checkin", format: (item) => string.Format("{0}", Convert.ToDateTime(item.checkin).ToString("hh:mm tt"))),
+                            grid.Column("Checkout", format: (item) => string.Format("{0}", item.checkout == null ? "" : Convert.ToDateTime(item.checkout).ToString("hh:mm tt"))),
+                            grid.Column("remarks", "Remarks"),
+                            grid.Column("Time", "Hours")
+
+                            ))
+
+</div>
+
+<style>
+    /*.name-width {
+        width:500px;
+    }*/
+    .table-responsive > .table > tbody > tr > td, .table-responsive > .table > tbody > tr > th, .table-responsive > .table > tfoot > tr > td, .table-responsive > .table > tfoot > tr > th, .table-responsive > .table > thead > tr > td, .table-responsive > .table > thead > tr > th {
+        white-space: normal;
+        /*width: 1000px;*/
+    }
+
+    .loader {
+        display: none;
+    }
+
+    .table-pager > td {
+        padding-top: 10px;
+    }
+
+        .table-pager > td > a {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 3px 7px;
+        }
+
+            .table-pager > td > a:hover {
+                /*background-color: #f0f0f0;*/
+                background-color: #4CAF90;
+            }
+</style>
+
+<style>
+    .table-responsive table {
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+    }
+
+        .table-responsive table th {
+            background-color: #B8DBFD;
+            border: 1px solid #ccc;
+        }
+
+            .table-responsive table th td {
+                border: 1px solid #ccc;
+            }
+</style>
+

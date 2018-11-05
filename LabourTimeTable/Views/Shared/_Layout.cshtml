@@ -1,0 +1,372 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+
+    <meta charset="utf-8" />
+    <title>Admin Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
+    <link href="~/theme/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/theme/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/theme/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/theme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    @*  <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="~/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/theme/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+        <link href="~/theme/assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/theme/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->*@
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="~/theme/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="~/theme/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="~/theme/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/theme/assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="~/theme/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    @*<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>*@
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="~/theme/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <!-- END CORE PLUGINS -->
+    <style>
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                /*font-size: 25px;*/
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+            }
+
+                .sidenav a:hover {
+                    color: #f1f1f1;
+                }
+
+            .sidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+
+        @@media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+                .sidenav a {
+                    font-size: 18px;
+                }
+        }
+
+        .header-down {
+            width: 250px;
+        }
+    </style>
+</head>
+<!-- END HEAD  onclick="openNav()" -->
+
+
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo">
+    <div class="page-wrapper">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <h5 class="form-title font-green"><b>INTERFUTURE TECHNOLOGIES </b></h5>
+                </div>
+
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-left" style="float: left;">
+                        <li class="dropdown dropdown-user">
+                            <span style="font-size: 30px; cursor: pointer; color: white;" id="btnNav">&#9776;</span>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <span class="username">@ViewBag.Name </span>
+                                <i class=""></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="~/Home/LogOut">
+                                        <i class="icon-key"></i>Log Out </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;  </a>
+                <div class="page-sidebar">
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item start">
+                            <a href="~/Dashboard/Home" class="nav-link nav-toggle">
+                                <i class="icon-home"></i>
+                                <span class="title">DASHBOARD</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item start">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-puzzle"></i>
+                                <span class="title">ATTENDANCE</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item start">
+                                    <a href="~/Home/Detail" class="nav-link">
+                                        <i class="icon-bar-chart"></i>
+                                        <span class="title">PROJECT</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item start ">
+                                    <a href="~/Complaint/Complaint" class="nav-link ">
+                                        <i class="icon-bulb"></i>
+                                        <span class="title">COMPLAIN</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item start ">
+                                    <a href="~/Others/Index" class="nav-link ">
+                                        <i class="icon-graph"></i>
+                                        <span class="title">OTHER</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="true" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item start">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">REPORTS</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item start">
+                                    <a href="~/Dashboard/AttendanceDashboard" class="nav-link ">
+                                        <i class="icon-bar-chart"></i>
+                                        <span class="title">PROJECT</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item start ">
+                                    <a href="~/Dashboard/ComplainDashboard" class="nav-link ">
+                                        <i class="icon-bulb"></i>
+                                        <span class="title">COMPLAIN</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item start ">
+                                    <a href="~/Dashboard/OtherDashboard" class="nav-link ">
+                                        <i class="icon-graph"></i>
+                                        <span class="title">OTHER</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item start ">
+                                    <a href="~/Dashboard/Dashboard" class="nav-link ">
+                                        <i class="icon-graph"></i>
+                                        <span class="title">JOB PROGRESS</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="true" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item start">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">EXCEPTION</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item start">
+                                    <a href="~/Dashboard/ExceptionDashboard" class="nav-link ">
+                                        <i class="icon-bar-chart"></i>
+                                        <span class="title">PROJECT</span>
+                                    </a>
+                                </li>
+                                @*<li class="nav-item start ">
+                                    <a href="~/Dashboard/ComplainDashboard" class="nav-link ">
+                                        <i class="icon-bulb"></i>
+                                        <span class="title">COMPLAIN</span>
+                                    </a>
+                                </li>*@
+                                @* <li class="nav-item start ">
+                                    <a href="~/Dashboard/OtherDashboard" class="nav-link ">
+                                        <i class="icon-graph"></i>
+                                        <span class="title">OTHER</span>
+                                    </a>
+                                </li>*@
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    @*                    <a href="~/Dashboard/Home">
+                        <i class="icon-diamond"></i>
+                        <span class="title">Dashboard</span>
+                    </a>
+
+                    <a href="~/Dashboard/Production">
+                        <i class="icon-diamond"></i>
+                        <span class="title">Production Graph</span>
+                    </a>
+
+                    <a href="~/Dashboard/AttendanceDashboard">
+                        <i class="icon-puzzle"></i>
+                        <span class="title">Attendance Dashboard</span>
+                    </a>
+                    <a href="~/Dashboard/ComplainDashboard">
+                        <i class="icon-puzzle"></i>
+                        <span class="title">Complain Dashboard</span>
+                    </a>
+                    <a href="~/Dashboard/OtherDashboard">
+                        <i class="icon-puzzle"></i>
+                        <span class="title">Other Dashboard</span>
+                    </a>
+                    <a href="javascript:;">
+                        <i class="icon-settings"></i>
+                        <span class="title">Work Hour Exception</span>
+                    </a>
+
+                    <a href="~/Complaint/Complaint">
+                        <i class="icon-settings"></i>
+                        <span class="title">Complain</span>
+                    </a>*@
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        @RenderBody()
+
+        <div class="page-footer">
+            <div class="page-footer-inner">
+                @DateTime.Now.Year &copy; 
+               
+                <a style="text-decoration: none; font-weight: bold; cursor: default;">INTERFUTURE TECHNOLOGIES</a>
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    @*<script src="~/theme/assets/global/plugins/moment.min.js" type="text/javascript"></script>*@
+    @*<script src="~/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>*@
+    @*<script src="~/theme/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/counterup/jquery.waypoints.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/counterup/jquery.counterup.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/horizontal-timeline/horizontal-timeline.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>*@
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="~/theme/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    @*<script src="~/theme/assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>*@
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="~/theme/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+
+    <script>
+        $("#btnNav").click(function () {
+            if (!$('#mySidenav').hasClass('header-down')) {
+                $('#mySidenav').stop().animate({ width: '250px' }, { queue: false, duration: 5, easing: 'linear' }).addClass('header-down');
+            }
+            else {
+                $('#mySidenav').stop().animate({ width: '0px' }, { queue: false, duration: 5, easing: 'linear' }).removeClass('header-down');
+            }
+        });
+
+        function closeNav() {
+            document.getElementById('mySidenav').style.width = "0";
+        }
+
+        $(document).ready(function () {
+
+            var name = '@ViewBag.Name';
+
+            if (name.toUpperCase().trim() == 'NASER ALALI'
+                || name.toUpperCase().trim() == 'MAHMOOD ISKANDARANI'
+                || name.toUpperCase().trim() == 'WAEL MOSTAFA'
+                || name.toUpperCase().trim() == 'MUHAMMAD ARIF') {
+                $('#mySidenav').show();
+            }
+            else {
+                $('#mySidenav').hide();
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+

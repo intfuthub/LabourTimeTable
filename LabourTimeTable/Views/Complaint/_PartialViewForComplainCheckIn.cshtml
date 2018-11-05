@@ -1,0 +1,60 @@
+﻿@model LabourTimeTable.Models.LabourComplaintDetailDTO
+@{
+    Layout = null;
+}
+@{
+    var grid = new WebGrid(Model._TimesheetComGridPostDTO, canPage: true, canSort: true, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div class="table-responsive">
+    @grid.GetHtml(tableStyle: "table table-striped table-bordered table-hover dataTable no-footer dtr-inline",
+                                mode: WebGridPagerModes.All,
+                                htmlAttributes: new { id = "grid" },
+                                firstText: "First",
+                                previousText: "Prev",
+                                nextText: "Next",
+                                lastText: "Last",
+                                footerStyle: "table-pager",
+                                columns: grid.Columns(
+                                grid.Column("empname", "Name"),
+                                grid.Column("com_no", "Complain No"),
+                                grid.Column("Checkin", format: (item) => string.Format("{0}", Convert.ToDateTime(item.checkin).ToString("hh:mm tt"))),
+                                grid.Column("Checkout", format: (item) => string.Format("{0}", item.checkout == null ? "" : Convert.ToDateTime(item.checkout).ToString("hh:mm tt"))),
+                                grid.Column("Activity",
+                                format: @<text><a data-value='@item.com_no'  href='@Url.Action("Activity", "Complaint", new { com_no = item.com_no, groupid = item.groupid })' id="btnActivity"  class='Form-Control'>Activity</a> </text>),
+                                grid.Column("Action", format: (item) =>
+                                {
+                                    if (item.time == null)
+                                    {
+                                        return Html.Raw("<text><a onclick='return confirmCheckout(" + @item.emp_id + ");' id='btnCheckoutz'>Checkout</a></text>");
+                                    }
+                                    else
+                                    {
+                                        return Html.Raw(string.Format("<text/>"));
+                                    }
+                                }
+                            )
+
+                                ))
+
+
+</div>
+
+
+
+<style>
+    .table-responsive table {
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+    }
+
+        .table-responsive table th {
+            background-color: #B8DBFD;
+            border: 1px solid #ccc;
+        }
+
+            .table-responsive table th td {
+                border: 1px solid #ccc;
+            }
+</style>

@@ -1,0 +1,616 @@
+﻿@model LabourTimeTable.Models.LabourDetailDTO
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+}
+@{
+    var grid = new WebGrid(Model._TimesheetGridDTO, canPage: true, rowsPerPage: 5, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid", ajaxUpdateCallback: "callBack");
+    grid.Pager(WebGridPagerModes.All);
+}
+<div class="page-container">
+    <div class="clearfix">
+        <div class="btn-group btn-group btn-group-justified">
+            <a href="~/Home/Detail" class="btn btn-default active" style="border-bottom: 4px solid #36c6d3; position: relative;" data-toggle="tab"><b>Project</b> </a>
+            <a href="~/Complaint/Complaint" class="btn btn-default">Complain </a>
+            <a href="~/Others/Index" class="btn btn-default">Others </a>
+        </div>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <h1 class="page-title">Project
+			   
+				<small>Manage Project Attendance</small>
+            </h1>
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="javascript:;"></a>
+                    </li>
+                    <li>
+                        <span>@DateTime.UtcNow.ToLongDateString()</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-social-dribbble font-red"></i>
+                        <span class="caption-subject font-red bold uppercase">Manage Project Attendance</span>
+                    </div>
+                </div>
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger display-hide" style="display: block;">
+                        <button class="close" data-close="alert"></button>
+                        <span>@ViewBag.Error </span>
+                    </div>
+                }
+                <div class="well">
+                    <!-- BEGIN FORM-->
+                    <form method="post" id="form" class="form-horizontal">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Job No</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtJobNo" id="txtJobNo" autocomplete="off" disabled="disabled" placeholder="Job No" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Project Name</label>
+                                <div class="col-md-4">
+                                    <textarea rows="4" cols="50" class="form-control" style="resize: none;" id="txtProjectName" name="txtProjectName" placeholder="Project Name"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Team <span id="counter"></span></label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control input-tags demo-default" id="input-tags" disabled="disabled" placeholder="Team Members">
+                                    <label class="mt-checkbox mt-checkbox-outline">
+                                        Outsourcing
+									<input type="checkbox" name="chkOutsourcing" id="chkOutsourcing" />
+                                        <span style="border: 2px solid brown !important;"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="divOutsourcing">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Outsource Company</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control input-tags demo-default" autocomplete="off" id="txtOutsourceCompany" disabled="disabled" placeholder="Outsource Company">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Team <span id="counter1"></span></label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control input-tags demo-default" id="txtOutsourceCompanyTeam" disabled="disabled" placeholder="Team Members">
+                                        <a href="~/Outsource/RegisterOutsourceTeam" target="_self">Add Outsource Team
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Checkin Time</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="txtDefaultTime" disabled="disabled" placeholder="Enter text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" class="btn green">CHECKIN</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="floating-panel" style="display: none;">
+                            <input id="latlng" type="text">
+                            <input id="name" type="text">
+                            <input id="formatted_address" type="text">
+                        </div>
+                        <div id="map" style="display: none;"></div>
+                    </form>
+                    <form method="post" id="form1" class="form-horizontal">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Checkout Time</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="txtDefaultCheckoutTime" disabled="disabled" placeholder="Enter text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="submit" id="btnsubmit" class="btn green">CHECKOUT</button>
+                                    <a style="display: none;" id="btnHandover" class="btn green">HANDOVER</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-group"></div>
+                    <div id="divPartialView">
+                        @Html.Partial("~/Views/Home/_PartialViewForCheckIn.cshtml", Model)
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table-pager > td {
+        padding-top: 10px;
+    }
+
+        .table-pager > td > a {
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 3px 7px;
+        }
+
+            .table-pager > td > a:hover {
+                background-color: #4CAF90;
+            }
+
+    .autocomplete-items {
+        height: 200px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: absolute;
+        padding: 0px 0px 0px 15px;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+            .autocomplete-items div:hover {
+                /*when hovering an item:*/
+                background-color: DodgerBlue !important;
+                color: #ffffff;
+            }
+
+    .autocomplete-active {
+        /*when navigating through the items using the arrow keys:*/
+        background-color: DodgerBlue !important;
+        color: #ffffff;
+    }
+
+    .Outsourcing {
+        display: none;
+    }
+
+    .loader {
+        display: none;
+    }
+
+    .btn-default.active, .btn-default:active, .btn-default:hover, .open > .btn-default.dropdown-toggle {
+        color: #333;
+        background-color: #ada5a5;
+        border-color: #ada5a5;
+    }
+</style>
+<script>
+
+    function initMap() {
+
+        var options = { enableHighAccuracy: true, timeout: 20000, maximumAge: 2000 };
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, positionError, options);
+        }
+    }
+
+    function LatLng(latitude, longitude) {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 25,
+            center: { lat: latitude, lng: longitude }
+        });
+        var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
+        geocodeLatLng(geocoder, map, infowindow);
+    }
+    function geocodeLatLng(geocoder, map, infowindow) {
+        var input = document.getElementById('latlng').value;
+        var latlngStr = input.split(',', 2);
+        var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+        geocoder.geocode({ 'location': latlng, 'region': 'UAE' }, function (results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    map.setZoom(25);
+                    var marker = new google.maps.Marker({
+                        position: results[0].geometry.location,
+                        map: map
+                    });
+
+                    var service = new google.maps.places.PlacesService(map);
+                    var request = {
+                        placeId: results[0].place_id
+                    };
+                    service.getDetails(request, function (place, status) {
+                        if (status == google.maps.places.PlacesServiceStatus.OK) {
+                            document.getElementById('name').value = place.name;
+                            document.getElementById('formatted_address').value = place.formatted_address;
+                        }
+                    });
+                    infowindow.setContent(results[0].formatted_address);
+                    infowindow.open(map, marker);
+                } else {
+                    window.alert('No results found');
+                }
+            } else {
+                window.alert('Geocoder failed due to: ' + status);
+            }
+        });
+    }
+
+    function showPosition(position) {
+        var coordinates = position.coords;
+
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        document.getElementById('latlng').value = latitude + ', ' + longitude;
+        LatLng(latitude, longitude);
+    }
+
+    function positionError(position) {
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRhSfZnKy-1wxL8xCX0kpRXUh1OXhcrOE&callback=initMap&&libraries=places">
+</script>
+
+
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+@*<script type="text/javascript" src="~/Moments/jquery-1.9.0.min.js"></script>*@
+<script type="text/javascript" src="~/Moments/jstz-1.0.4.min.js"></script>
+<script type="text/javascript" src="~/Moments/moment.min.js"></script>
+<script type="text/javascript" src="~/Moments/moment-timezone.js"></script>
+<script type="text/javascript" src="~/Moments/moment-timezone-data.js"></script>
+
+
+<link href="~/Custom_Scripts/auto_complete/jquery.auto-complete.css" rel="stylesheet" />
+<script src="~/Custom_Scripts/auto_complete/jquery.auto-complete.js"></script>
+
+<script src="~/Custom_Scripts/multiple-select/selectize.js"></script>
+<link href="~/Custom_Scripts/multiple-select/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="~/jquery.loading-overlay.js"></script>
+
+<script src="~/serverDate.js"></script>
+
+<script>
+    var counter = 0;
+    var counter1 = 0;
+    $(document).ready(function () {
+        var checkoutFlag = @Html.Raw(Json.Encode(Model._TimesheetGridDTO))
+		$('#form1').hide();
+        $.each(checkoutFlag, function (index, item) {
+            if (item.is_checkout == false) {
+                $('#form').hide();
+                $('#form1').show();
+                return false;
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/Home/GetProjectDetailList",
+            data: {},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (Result) {
+                $('#txtJobNo').removeAttr('disabled');
+                $('#txtOutsourceCompany').removeAttr('disabled');
+                $('#input-tags').removeAttr('disabled');
+
+                $('#txtJobNo').selectize({
+                    //plugins: ['remove_button'],
+                    persist: false,
+                    create: false,
+                    maxItems: 1,
+                    valueField: 'ord_no',
+                    labelField: 'ord_no',
+                    searchField: 'ord_no',
+                    options: Result._enq_mast,
+                    render: {
+                        item: function (data, escape) {
+                            return '<div>' + escape(data.ord_no) + '</div>';
+                        }
+                    },
+                    onChange: function (escape) {
+                        $.each(Result._enq_mast, function (index, values) {
+                            if (Result._enq_mast[index].ord_no === escape) {
+                                $("#txtProjectName").val(Result._enq_mast[index].job_name).attr('disabled', 'disabled');
+                            }
+                        });
+                    }
+                });
+
+                $('#txtProjectName').autoComplete({
+                    minChars: 1,
+                    source: function (term, suggest) {
+                        term = term.toLowerCase();
+                        var choices = Result;
+                        var suggestions = [];
+                        for (i = 0; i < choices._enq_mast.length; i++)
+                            if (~choices._enq_mast[i].job_name.toLowerCase().indexOf(term)) suggestions.push(choices._enq_mast[i].job_name);
+                        suggest(suggestions);
+                    },
+                    onSelect: function (e, term, item) {
+                        $.each(Result._enq_mast, function (index, item) {
+                            if (Result._enq_mast[index].job_name == term) {
+                                //$("#txtJobNo").val().attr('disabled', 'disabled');
+                                $('#txtJobNo')[0].selectize.setValue(Result._enq_mast[index].ord_no);
+                                $('#txtProjectName').removeAttr('disabled');
+                                //$('#myDropDown')[0].selectize.disable();
+                            }
+                        });
+                    }
+                });
+
+                $('#input-tags').selectize({
+                    plugins: ['remove_button'],
+                    persist: false,
+                    create: false,
+                    valueField: 'empID',
+                    labelField: 'empname',
+                    searchField: 'empname',
+                    options: Result._employee,
+                    render: {
+                        item: function (data, escape) {
+                            $("#counter").text('(' + ++counter + ')');
+                            if (counter == 0 || counter < 0) {
+                                $("#counter").text('');
+                            }
+                            return '<div>' + escape(data.Firstname) + '</div>';
+                        }
+                    },
+                    onDelete: function (values) {
+                        $("#counter").text('(' + --counter + ')');
+                        if (counter == 0 || counter < 0) {
+                            $("#counter").text('');
+                        }
+                    }
+
+                });
+
+                $('#txtOutsourceCompany').selectize({
+                    //plugins: ['remove_button'],
+                    persist: false,
+                    create: false,
+                    maxItems: 1,
+                    valueField: 'id',
+                    labelField: 'companyName',
+                    searchField: 'companyName',
+                    options: Result._OutSourceDetail,
+                    render: {
+                        item: function (data, escape) {
+                            return '<div>' + escape(data.companyName) + '</div>';
+                        }
+                    },
+                    onChange: function (values) {
+                        var id = $('#txtOutsourceCompany').val();
+                        $('#txtOutsourceCompanyTeam').selectize()[0].selectize.destroy();
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/GetOutSourceEmployeeList",
+                            data: JSON.stringify({ 'outsourced_id': id }),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (Result) {
+                                $('#txtOutsourceCompanyTeam').removeAttr('disabled');
+
+                                $('#txtOutsourceCompanyTeam').selectize({
+                                    plugins: ['remove_button'],
+                                    persist: false,
+                                    create: false,
+                                    valueField: 'empID',
+                                    labelField: 'empname',
+                                    searchField: 'empname',
+                                    options: Result._OutsourcedEmployees,
+                                    render: {
+                                        item: function (data, escape) {
+                                            $("#counter1").text('(' + ++counter1 + ')');
+                                            if (counter1 == 0 || counter1 < 0) {
+                                                $("#counter1").text('');
+                                            }
+
+                                            return '<div>' + escape(data.Firstname) + '</div>';
+                                        }
+                                    },
+                                    onDelete: function (values) {
+                                        $("#counter1").text('(' + --counter1 + ')');
+                                        if (counter1 == 0 || counter1 < 0) {
+                                            $("#counter1").text('');
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        ShowTime();
+    });
+
+    $("#divOutsourcing").hide();
+    $("#chkOutsourcing").click(function () {
+        if (this.checked == true) {
+            $("#divOutsourcing").show(this);
+        }
+        else { $("#divOutsourcing").hide(this); }
+    });
+
+    $('form').submit(function (e) {
+        if ($('#txtJobNo').val() == '') {
+            alert('Please select the Job No.');
+            e.preventDefault();
+            return false;
+        }
+        else if ($('#ProjectName').val() == '') {
+            alert('Please select the Project Name.');
+            e.preventDefault();
+            return false;
+        }
+
+        $('.page-container').loader({
+            image: '../loader.gif'
+        });
+
+        //location
+        var location = {
+            "latlng": $('#latlng').val(),
+            "name": $('#name').val(),
+            "formatted_address": $('#formatted_address').val()
+        };
+
+        var arrayTeam = $('#input-tags').val().split(',');
+
+        var arrayOutsourceCompanyTeam = $('#txtOutsourceCompanyTeam').val().split(',');
+        if (arrayOutsourceCompanyTeam == '') {
+            arrayOutsourceCompanyTeam.length = null;
+        }
+        var dt = new Date();
+        var time = new Date().toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' });
+        var TimesheetPostDTO = {
+            "JobNo": $('#txtJobNo').val(),
+            "ProjectName": $('#txtProjectName').val(),
+            "Team": arrayTeam,
+            "OutsourceCompanyID": $('#txtOutsourceCompany').val(),
+            "OutsourceTeam": arrayOutsourceCompanyTeam,
+            "Time": time,
+            "location": location
+        };
+
+        $.ajax({
+            url: '@Url.Action("Detail")',
+            type: "POST",
+            datatype: "text/plain",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(TimesheetPostDTO),
+            success: function (result) {
+                window.location = window.location;
+                $('.page-container').loader('hide');
+            },
+            error: function (result, xhr) {
+                window.location = window.location;
+                $('.page-container').loader('hide');
+            }
+        });
+        return false;
+    });
+
+    $('#btnsubmit').click(function (event) {
+        $('.page-container').loader({
+            image: '../loader.gif'
+        });
+        event.preventDefault();
+        var CheckoutTime = $('#txtDefaultCheckoutTime').val()
+        $.ajax({
+            url: '@Url.Action("AllCheckOut")',
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ 'CheckoutTime': CheckoutTime }),
+            success: function (result) {
+                window.location = window.location;
+                $('.page-container').loader('hide');
+            },
+            error: function (result) {
+                window.location = window.location;
+                $('.page-container').loader('hide');
+            }
+        });
+        return false;
+    });
+
+
+    function ShowTime() {
+        var current_time = moment().tz('Asia/Dubai').format('h:mm A');
+        $('#txtDefaultTime').val(current_time);
+        $('#txtDefaultCheckoutTime').val(current_time);
+        window.setTimeout("ShowTime()", 1000);//1000 miliseconds = 1 second
+    }
+
+    function confirmCheckout(emp_id) {
+        var CheckoutTime = $('#txtDefaultCheckoutTime').val()
+
+        $('.page-container').loader({
+            image: '../loader.gif'
+        });
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("CheckIfUserIsAdmin")',
+            data: JSON.stringify({ 'empid': emp_id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result.length == 1 || result.length == 0) {
+                    CheckOutIndividual(emp_id, CheckoutTime);
+                    $('.page-container').loader('hide');
+                }
+                else {
+                    alert("Please handover employees before you checkout.");
+                    $('.page-container').loader('hide');
+                }
+            },
+            error: function (result) {
+                window.location = window.location;
+                $('.page-container').loader('hide');
+            }
+        });
+    }
+
+    function CheckOutIndividual(emp_id, CheckoutTime) {
+        if (confirm('Are you sure you wish to checkout?')) {
+            $('.page-container').loader({
+                image: '../loader.gif'
+            });
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("IndividualCheckOut")',
+                data: JSON.stringify({ 'empid': emp_id, 'checkOutTime': CheckoutTime }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    window.location = window.location;
+                    $('.page-container').loader('hide');
+
+                },
+                error: function (result) {
+                    window.location = window.location;
+                    $('.page-container').loader('hide');
+                }
+            });
+        } else {
+            $('.page-container').loader('hide');
+        }
+    }
+
+    $(document).ajaxStart(function () {
+        $('.page-container').loader({
+            image: '../loader.gif'
+        });
+    }).ajaxStop(function () {
+        $('.page-container').loader('hide');
+    });
+</script>
+
+
+
+

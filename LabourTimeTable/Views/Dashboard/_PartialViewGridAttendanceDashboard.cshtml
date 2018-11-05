@@ -1,0 +1,56 @@
+﻿@model LabourTimeTable.Models.LabourDetailDTO
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = null;
+}
+
+@{
+    var grid = new WebGrid(Model._TimesheetGridDTO, canPage: true, canSort: true, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    grid.Pager(WebGridPagerModes.All);
+}
+<div id="tableGrid" class="table-responsive">
+    @grid.GetHtml(tableStyle: "table table-striped table-bordered table-hover dataTable no-footer dtr-inline",
+                    mode: WebGridPagerModes.All,
+                    htmlAttributes: new { id = "grid" },
+                    firstText: "First",
+                    previousText: "Prev",
+                    nextText: "Next",
+                    lastText: "Last",
+                    footerStyle: "table-pager",
+                    columns: grid.Columns(
+                    grid.Column(header: "No.", format: item => item.WebGrid.Rows.IndexOf(item) + 1
+                    + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage)
+                    * grid.RowsPerPage * grid.PageIndex),
+                    grid.Column("empname", "Name"),
+                    grid.Column("job_no", "Job No"),
+                    grid.Column("Date", format: (item) => string.Format("{0:dd/MM/yyyy}", item.date)),
+                    grid.Column("Checkin", format: (item) => string.Format("{0}", Convert.ToDateTime(item.checkin).ToString("hh:mm tt"))),
+                    grid.Column("Checkout" , format: (item) => string.Format("{0}", item.checkout == null ? "" : Convert.ToDateTime(item.checkout).ToString("hh:mm tt"))),
+                    grid.Column("Time", "Hours")
+                ))
+
+</div>
+
+<style>
+    .table-responsive table {
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+    }
+
+        .table-responsive table th {
+            background-color: #B8DBFD;
+            border: 1px solid #ccc;
+        }
+
+            .table-responsive table th td {
+                border: 1px solid #ccc;
+            }
+</style>
+
+@*@using (Html.BeginForm("Export", "Dashboard", new { enctype = "multipart/form-data", LabourDetailDTO = @Html.Raw(Model._TimesheetGridDTO) }))
+    {
+        <input type="hidden" name="GridHtml" />
+
+    }*@
+
+

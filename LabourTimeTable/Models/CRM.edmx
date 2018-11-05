@@ -1,0 +1,1193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InterfutureModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="InterfutureModelStoreContainer">
+          <EntitySet Name="employee" EntityType="InterfutureModel.Store.employee" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="enq_mast" EntityType="InterfutureModel.Store.enq_mast" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="enq_tran" EntityType="InterfutureModel.Store.enq_tran" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="JobDailyProduction" EntityType="InterfutureModel.Store.JobDailyProduction" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="joblabcost" EntityType="InterfutureModel.Store.joblabcost" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="joblabwork" EntityType="InterfutureModel.Store.joblabwork" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="OutSourceDetails" EntityType="InterfutureModel.Store.OutSourceDetails" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="empTmp" EntityType="InterfutureModel.Store.empTmp" store:Type="Tables" Schema="intersa" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="joblabworkemp" EntityType="InterfutureModel.Store.joblabworkemp" store:Type="Tables" Schema="intersa" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="JobLabWorkTemp" EntityType="InterfutureModel.Store.JobLabWorkTemp" store:Type="Tables" Schema="intersa" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="jobplanday" EntityType="InterfutureModel.Store.jobplanday" store:Type="Tables" Schema="intersa" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+        </EntityContainer>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="empID" />
+          </Key>
+          <Property Name="empID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ac_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="empname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Middlename" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="JoinDate" Type="datetime" />
+          <Property Name="NationId" Type="int" />
+          <Property Name="nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="jobID" Type="int" />
+          <Property Name="emptypeID" Type="int" />
+          <Property Name="EmptypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DesignationId" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyId" Type="nvarchar" MaxLength="20" />
+          <Property Name="DeptId" Type="int" />
+          <Property Name="workname" Type="nvarchar" MaxLength="50" />
+          <Property Name="workID" Type="nchar" MaxLength="10" />
+          <Property Name="workType" Type="tinyint" />
+          <Property Name="GradeID" Type="int" />
+          <Property Name="salary" Type="money" />
+          <Property Name="starmark" Type="nchar" MaxLength="1" />
+          <Property Name="status" Type="tinyint" />
+          <Property Name="Inactive" Type="bit" />
+          <Property Name="jobend" Type="tinyint" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="FileNo" Type="nchar" MaxLength="10" />
+          <Property Name="PassportNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="PassportIssueDate" Type="datetime" />
+          <Property Name="PassportExpiryDate" Type="datetime" />
+          <Property Name="LaborNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="LaborIssueDate" Type="datetime" />
+          <Property Name="LaborExpiryDate" Type="datetime" />
+          <Property Name="VisaNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="VisaIssueDate" Type="datetime" />
+          <Property Name="VisaExpiryDate" Type="datetime" />
+          <Property Name="EmidNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmidIssueDate" Type="datetime" />
+          <Property Name="EmidExpiryDate" Type="datetime" />
+          <Property Name="HealthNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="HealthIssueDate" Type="datetime" />
+          <Property Name="HealthExpiryDate" Type="datetime" />
+          <Property Name="DrivingLicNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="DrivingLicIssueDate" Type="datetime" />
+          <Property Name="DrivingLicExpiryDate" Type="datetime" />
+          <Property Name="DrivingLicType" Type="nvarchar" MaxLength="50" />
+          <Property Name="LabRegDate" Type="datetime" />
+          <Property Name="WorkcountryID" Type="int" />
+          <Property Name="WorkAddress1" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkAddress2" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkState" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkPostbox" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkTelno" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkMobno" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomecountryID" Type="int" />
+          <Property Name="HomeAddress1" Type="nvarchar" MaxLength="100" />
+          <Property Name="HomeAddress2" Type="nvarchar" MaxLength="100" />
+          <Property Name="HomeCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomeState" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomeCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomePostBox" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomeTelno" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomeMobno" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salary_Basic" Type="money" />
+          <Property Name="Salary_Hra" Type="money" />
+          <Property Name="Salary_Transport" Type="money" />
+          <Property Name="Salary_Other" Type="money" />
+          <Property Name="Airticket" Type="bit" />
+          <Property Name="BankTransfer" Type="bit" />
+          <Property Name="LaborRegDate" Type="datetime" />
+          <Property Name="Bankno" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bankname" Type="nvarchar" MaxLength="50" />
+          <Property Name="IncrementDate" Type="datetime" />
+          <Property Name="IncrementAmount" Type="money" />
+          <Property Name="IncrementReason" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remarks" Type="ntext" />
+          <Property Name="Imagepath" Type="ntext" />
+        </EntityType>
+        <EntityType Name="enq_mast">
+          <Key>
+            <PropertyRef Name="doc_no" />
+          </Key>
+          <Property Name="doc_no" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="doc_date" Type="datetime" />
+          <Property Name="doc_rev" Type="nvarchar" MaxLength="20" />
+          <Property Name="custTypeId" Type="int" />
+          <Property Name="ac_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="CustName" Type="nvarchar" MaxLength="75" />
+          <Property Name="owner_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="owner_name" Type="nvarchar" MaxLength="75" />
+          <Property Name="contactId" Type="int" />
+          <Property Name="Inv_Code" Type="nvarchar" MaxLength="20" />
+          <Property Name="reqNatureId" Type="int" />
+          <Property Name="reqNatureName" Type="nvarchar" MaxLength="50" />
+          <Property Name="tpc_yn" Type="bit" />
+          <Property Name="tpc_cust" Type="nvarchar" MaxLength="10" />
+          <Property Name="tpc_per" Type="money" />
+          <Property Name="tpc_amt" Type="money" />
+          <Property Name="enq_source" Type="int" />
+          <Property Name="enq_rct_by" Type="int" />
+          <Property Name="enq_re" Type="int" />
+          <Property Name="enq_se" Type="int" />
+          <Property Name="enq_se_date" Type="datetime" />
+          <Property Name="enq_est_date" Type="datetime" />
+          <Property Name="enq_job_date" Type="datetime" />
+          <Property Name="enq_qot_date" Type="datetime" />
+          <Property Name="qot_rct_by" Type="int" />
+          <Property Name="qot_rct_date" Type="datetime" />
+          <Property Name="qot_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="qot_date" Type="datetime" />
+          <Property Name="qot_amt" Type="money" />
+          <Property Name="remarks1" Type="nvarchar(max)" />
+          <Property Name="remarks2" Type="ntext" />
+          <Property Name="job_name" Type="nvarchar(max)" />
+          <Property Name="ref_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="tselect" Type="tinyint" />
+          <Property Name="enq_level" Type="tinyint" />
+          <Property Name="enq_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ord_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="ord_date" Type="datetime" />
+          <Property Name="ext_job" Type="nvarchar" MaxLength="20" />
+          <Property Name="complaintno" Type="nvarchar" MaxLength="20" />
+          <Property Name="reasonId" Type="int" />
+          <Property Name="reason" Type="ntext" />
+          <Property Name="job_status" Type="tinyint" />
+          <Property Name="enq_read" Type="tinyint" />
+          <Property Name="enq_typeId" Type="int" />
+          <Property Name="tstkamt" Type="money" />
+          <Property Name="plotno" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjectTypeId" Type="int" />
+          <Property Name="enq_level_old" Type="tinyint" />
+          <Property Name="enq_status_old" Type="nvarchar" MaxLength="25" />
+          <Property Name="mat_cost" Type="money" />
+          <Property Name="lab_cost" Type="money" />
+          <Property Name="disc_fix" Type="money" />
+          <Property Name="lpo_no" Type="nvarchar" MaxLength="25" />
+          <Property Name="pay_terms" Type="int" />
+          <Property Name="Inactive" Type="tinyint" />
+          <Property Name="ColorId" Type="int" />
+          <Property Name="jobdecline_date" Type="datetime" />
+          <Property Name="jobopen_date" Type="datetime" />
+          <Property Name="jobhand_date" Type="datetime" />
+          <Property Name="jobclose_date" Type="datetime" />
+          <Property Name="jobwarranty_date" Type="datetime" />
+          <Property Name="Mod_job" Type="nvarchar" MaxLength="50" />
+          <Property Name="Amtpay" Type="money" />
+          <Property Name="AmtpayVout" Type="nvarchar" MaxLength="50" />
+          <Property Name="Credit" Type="float" />
+          <Property Name="EngStatuse" Type="int" />
+          <Property Name="Edit" Type="int" />
+          <Property Name="MainsFrom_date" Type="datetime" />
+          <Property Name="MainsTo_date" Type="datetime" />
+          <Property Name="TenderDate" Type="datetime" />
+          <Property Name="TenderRemark" Type="nvarchar" MaxLength="500" />
+          <Property Name="QPrint" Type="int" />
+          <Property Name="UserQPrint" Type="nvarchar" MaxLength="50" />
+          <Property Name="OpitnQt" Type="int" />
+          <Property Name="EnqExtintion" Type="int" />
+          <Property Name="DefectLiabilityDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="enq_tran">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="doc_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="doc_date" Type="datetime" />
+          <Property Name="qot_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="ord_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="jobsystemId" Type="nvarchar" MaxLength="10" />
+          <Property Name="jobsystemname" Type="varchar" MaxLength="50" />
+          <Property Name="tstkgross" Type="float" />
+          <Property Name="disc_per" Type="float" />
+          <Property Name="disc_fix" Type="float" />
+          <Property Name="margin_per" Type="float" />
+          <Property Name="tstkamt" Type="float" />
+          <Property Name="tstkcp" Type="float" />
+          <Property Name="tstkdttrn" Type="datetime" />
+          <Property Name="tcustcode" Type="nvarchar" MaxLength="20" />
+          <Property Name="tstkref" Type="nvarchar" MaxLength="50" />
+          <Property Name="mat_cost" Type="float" />
+          <Property Name="lab_cost" Type="float" />
+          <Property Name="mat_per" Type="float" />
+          <Property Name="lab_per" Type="float" />
+          <Property Name="startdate1" Type="datetime" />
+          <Property Name="startdate2" Type="datetime" />
+          <Property Name="startdate3" Type="datetime" />
+          <Property Name="mat_del_date" Type="datetime" />
+          <Property Name="job_hand_date" Type="datetime" />
+          <Property Name="show1" Type="tinyint" />
+          <Property Name="show2" Type="tinyint" />
+          <Property Name="show3" Type="tinyint" />
+          <Property Name="flaage" Type="int" />
+          <Property Name="canceled" Type="bit" />
+          <Property Name="transfer" Type="bit" />
+          <Property Name="RemarkMod" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Replacement" Type="numeric" />
+          <Property Name="FlageFinish" Type="numeric" />
+          <Property Name="Edit" Type="bit" />
+          <Property Name="MainsFrom_date" Type="datetime" />
+          <Property Name="MainsTo_date" Type="datetime" />
+          <Property Name="del_per" Type="money" />
+          <Property Name="del_amount" Type="money" />
+        </EntityType>
+        <EntityType Name="JobDailyProduction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="doc_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="jobsystemId" Type="nvarchar" MaxLength="10" />
+          <Property Name="jobno" Type="nvarchar" MaxLength="50" />
+          <Property Name="Jobcode" Type="int" />
+          <Property Name="job_per" Type="money" />
+          <Property Name="weight_per" Type="nvarchar" MaxLength="20" />
+          <Property Name="taskname" Type="nvarchar" MaxLength="150" />
+          <Property Name="empcode" Type="nvarchar" MaxLength="20" />
+          <Property Name="qty_man" Type="int" />
+          <Property Name="qty_item" Type="money" />
+          <Property Name="unit" Type="nvarchar" MaxLength="50" />
+          <Property Name="time_min" Type="money" />
+          <Property Name="factor" Type="int" />
+          <Property Name="tot_time_hour" Type="nvarchar" MaxLength="20" />
+          <Property Name="hr_cost" Type="money" />
+          <Property Name="tot_cost" Type="nvarchar" MaxLength="20" />
+          <Property Name="blanklines" Type="int" />
+          <Property Name="srno" Type="int" />
+          <Property Name="flageTrans" Type="numeric" />
+          <Property Name="flagecancel" Type="numeric" />
+          <Property Name="flagereplese" Type="numeric" />
+          <Property Name="flageEdit" Type="int" />
+          <Property Name="flageFix" Type="int" />
+          <Property Name="PlanQty" Type="money" />
+          <Property Name="PlanDay" Type="nvarchar" MaxLength="50" />
+          <Property Name="QtyDone" Type="money" />
+          <Property Name="Qty" Type="money" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+          <Property Name="FromTime" Type="datetime" />
+          <Property Name="ToTime" Type="datetime" />
+          <Property Name="Updatedate" Type="datetime" />
+          <Property Name="joblabcostId" Type="nvarchar" MaxLength="50" />
+          <Property Name="ondate" Type="datetime" />
+          <Property Name="groupid" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="joblabcost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="doc_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="jobsystemId" Type="nvarchar" MaxLength="10" />
+          <Property Name="Jobcode" Type="int" />
+          <Property Name="job_per" Type="float" />
+          <Property Name="weight_per" Type="nvarchar" MaxLength="20" />
+          <Property Name="taskname" Type="nvarchar" MaxLength="150" />
+          <Property Name="empcode" Type="nvarchar" MaxLength="20" />
+          <Property Name="qty_man" Type="int" />
+          <Property Name="qty_item" Type="money" />
+          <Property Name="unit" Type="nvarchar" MaxLength="50" />
+          <Property Name="time_min" Type="money" />
+          <Property Name="factor" Type="int" />
+          <Property Name="tot_time_hour" Type="nvarchar" MaxLength="20" />
+          <Property Name="hr_cost" Type="money" />
+          <Property Name="tot_cost" Type="nvarchar" MaxLength="20" />
+          <Property Name="blanklines" Type="int" />
+          <Property Name="srno" Type="int" />
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="flageTrans" Type="numeric" />
+          <Property Name="flagecancel" Type="numeric" />
+          <Property Name="flagereplese" Type="numeric" />
+          <Property Name="flageEdit" Type="int" />
+          <Property Name="flageFix" Type="int" />
+        </EntityType>
+        <EntityType Name="joblabwork">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="doc_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="jobno" Type="nvarchar" MaxLength="20" />
+          <Property Name="jobsystemId" Type="nvarchar" MaxLength="10" />
+          <Property Name="qty_item" Type="decimal" Scale="1" />
+          <Property Name="rowno" Type="int" />
+          <Property Name="joblabcostId" Type="nvarchar" MaxLength="50" />
+          <Property Name="jobdate" Type="datetime" />
+          <Property Name="FlageMod" Type="int" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="fromtime" Type="datetime" />
+          <Property Name="totime" Type="datetime" />
+          <Property Name="JobCode" Type="int" />
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="time_min" Type="money" />
+          <Property Name="activity" Type="nvarchar" MaxLength="200" />
+          <Property Name="SystemName" Type="nvarchar" MaxLength="100" />
+          <Property Name="hr_cost" Type="money" />
+          <Property Name="qty_man" Type="int" />
+          <Property Name="totTime_hrs" Type="money" />
+        </EntityType>
+        <EntityType Name="OutSourceDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="doc_no" Type="nvarchar" MaxLength="500" />
+          <Property Name="jobno" Type="nvarchar" MaxLength="50" />
+          <Property Name="jobsystemid" Type="nvarchar" MaxLength="50" />
+          <Property Name="jobdate" Type="datetime" />
+          <Property Name="noOfOutsource" Type="int" />
+          <Property Name="fromtime" Type="datetime" />
+          <Property Name="totime" Type="datetime" />
+          <Property Name="companyName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="empTmp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpId" Type="int" />
+          <Property Name="WorkId" Type="nvarchar(max)" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="500" />
+          <Property Name="groupId" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="joblabworkemp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="doc_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="jobno" Type="nvarchar" MaxLength="20" />
+          <Property Name="jobsystemId" Type="nvarchar" MaxLength="10" />
+          <Property Name="jobdate" Type="datetime" />
+          <Property Name="ac_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="empid" Type="int" />
+          <Property Name="workid" Type="nvarchar" MaxLength="10" />
+          <Property Name="empname" Type="nvarchar" MaxLength="150" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="fromtime" Type="datetime" />
+          <Property Name="totime" Type="datetime" />
+          <Property Name="groupid" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="JobLabWorkTemp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TaskName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PlanTime" Type="float" />
+          <Property Name="Worjtime" Type="float" />
+          <Property Name="Balance" Type="float" />
+        </EntityType>
+        <EntityType Name="jobplanday">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpId" Type="int" />
+          <Property Name="trandate" Type="datetime" />
+          <Property Name="Jobno" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobsystemId" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="trantime" Type="smallint" />
+          <Property Name="Jobcode" Type="tinyint" />
+          <Property Name="doc_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="jobWork" Type="nvarchar" MaxLength="20" />
+          <Property Name="timealloc" Type="money" />
+          <Property Name="JobPlanMonthId" Type="bigint" />
+          <Property Name="PlanNo" Type="int" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InterfutureModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="InterfutureEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="employees" EntityType="InterfutureModel.employee" />
+          <EntitySet Name="enq_mast" EntityType="InterfutureModel.enq_mast" />
+          <EntitySet Name="enq_tran" EntityType="InterfutureModel.enq_tran" />
+          <EntitySet Name="joblabcosts" EntityType="InterfutureModel.joblabcost" />
+          <EntitySet Name="joblabworks" EntityType="InterfutureModel.joblabwork" />
+          <EntitySet Name="OutSourceDetails" EntityType="InterfutureModel.OutSourceDetail" />
+          <EntitySet Name="JobLabWorkTemps" EntityType="InterfutureModel.JobLabWorkTemp" />
+          <EntitySet Name="empTmps" EntityType="InterfutureModel.empTmp" />
+          <EntitySet Name="jobplandays" EntityType="InterfutureModel.jobplanday" />
+          <EntitySet Name="JobDailyProductions" EntityType="InterfutureModel.JobDailyProduction" />
+          <EntitySet Name="joblabworkemps" EntityType="InterfutureModel.joblabworkemp" />
+        </EntityContainer>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="empID" />
+          </Key>
+          <Property Name="empID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ac_code" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="empname" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Firstname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Middlename" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Lastname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="JoinDate" Type="DateTime" Precision="3" />
+          <Property Name="NationId" Type="Int32" />
+          <Property Name="nationality" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="jobID" Type="Int32" />
+          <Property Name="emptypeID" Type="Int32" />
+          <Property Name="EmptypeName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DesignationId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyId" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="DeptId" Type="Int32" />
+          <Property Name="workname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="workID" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="workType" Type="Byte" />
+          <Property Name="GradeID" Type="Int32" />
+          <Property Name="salary" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="starmark" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+          <Property Name="status" Type="Byte" />
+          <Property Name="Inactive" Type="Boolean" />
+          <Property Name="jobend" Type="Byte" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="FileNo" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="PassportNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PassportIssueDate" Type="DateTime" Precision="3" />
+          <Property Name="PassportExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="LaborNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LaborIssueDate" Type="DateTime" Precision="3" />
+          <Property Name="LaborExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="VisaNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VisaIssueDate" Type="DateTime" Precision="3" />
+          <Property Name="VisaExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="EmidNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EmidIssueDate" Type="DateTime" Precision="3" />
+          <Property Name="EmidExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="HealthNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="HealthIssueDate" Type="DateTime" Precision="3" />
+          <Property Name="HealthExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="DrivingLicNo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DrivingLicIssueDate" Type="DateTime" Precision="3" />
+          <Property Name="DrivingLicExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="DrivingLicType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LabRegDate" Type="DateTime" Precision="3" />
+          <Property Name="WorkcountryID" Type="Int32" />
+          <Property Name="WorkAddress1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="WorkAddress2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="WorkCity" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="WorkState" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="WorkCountry" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="WorkPostbox" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="WorkTelno" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="WorkMobno" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="HomecountryID" Type="Int32" />
+          <Property Name="HomeAddress1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="HomeAddress2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="HomeCity" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="HomeState" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="HomeCountry" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="HomePostBox" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="HomeTelno" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="HomeMobno" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Salary_Basic" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Salary_Hra" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Salary_Transport" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Salary_Other" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Airticket" Type="Boolean" />
+          <Property Name="BankTransfer" Type="Boolean" />
+          <Property Name="LaborRegDate" Type="DateTime" Precision="3" />
+          <Property Name="Bankno" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Bankname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IncrementDate" Type="DateTime" Precision="3" />
+          <Property Name="IncrementAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IncrementReason" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Imagepath" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="enq_mast">
+          <Key>
+            <PropertyRef Name="doc_no" />
+          </Key>
+          <Property Name="doc_no" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="doc_date" Type="DateTime" Precision="3" />
+          <Property Name="doc_rev" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="custTypeId" Type="Int32" />
+          <Property Name="ac_code" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CustName" Type="String" MaxLength="75" Unicode="true" FixedLength="false" />
+          <Property Name="owner_code" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="owner_name" Type="String" MaxLength="75" Unicode="true" FixedLength="false" />
+          <Property Name="contactId" Type="Int32" />
+          <Property Name="Inv_Code" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="reqNatureId" Type="Int32" />
+          <Property Name="reqNatureName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="tpc_yn" Type="Boolean" />
+          <Property Name="tpc_cust" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="tpc_per" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="tpc_amt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="enq_source" Type="Int32" />
+          <Property Name="enq_rct_by" Type="Int32" />
+          <Property Name="enq_re" Type="Int32" />
+          <Property Name="enq_se" Type="Int32" />
+          <Property Name="enq_se_date" Type="DateTime" Precision="3" />
+          <Property Name="enq_est_date" Type="DateTime" Precision="3" />
+          <Property Name="enq_job_date" Type="DateTime" Precision="3" />
+          <Property Name="enq_qot_date" Type="DateTime" Precision="3" />
+          <Property Name="qot_rct_by" Type="Int32" />
+          <Property Name="qot_rct_date" Type="DateTime" Precision="3" />
+          <Property Name="qot_no" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="qot_date" Type="DateTime" Precision="3" />
+          <Property Name="qot_amt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="remarks1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="remarks2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="job_name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ref_no" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PostedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="tselect" Type="Byte" />
+          <Property Name="enq_level" Type="Byte" />
+          <Property Name="enq_status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="user_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ord_no" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ord_date" Type="DateTime" Precision="3" />
+          <Property Name="ext_job" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="complaintno" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="reasonId" Type="Int32" />
+          <Property Name="reason" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="job_status" Type="Byte" />
+          <Property Name="enq_read" Type="Byte" />
+          <Property Name="enq_typeId" Type="Int32" />
+          <Property Name="tstkamt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="plotno" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ProjectTypeId" Type="Int32" />
+          <Property Name="enq_level_old" Type="Byte" />
+          <Property Name="enq_status_old" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="mat_cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="lab_cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="disc_fix" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="lpo_no" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="pay_terms" Type="Int32" />
+          <Property Name="Inactive" Type="Byte" />
+          <Property Name="ColorId" Type="Int32" />
+          <Property Name="jobdecline_date" Type="DateTime" Precision="3" />
+          <Property Name="jobopen_date" Type="DateTime" Precision="3" />
+          <Property Name="jobhand_date" Type="DateTime" Precision="3" />
+          <Property Name="jobclose_date" Type="DateTime" Precision="3" />
+          <Property Name="jobwarranty_date" Type="DateTime" Precision="3" />
+          <Property Name="Mod_job" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Amtpay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AmtpayVout" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Credit" Type="Double" />
+          <Property Name="EngStatuse" Type="Int32" />
+          <Property Name="Edit" Type="Int32" />
+          <Property Name="MainsFrom_date" Type="DateTime" Precision="3" />
+          <Property Name="MainsTo_date" Type="DateTime" Precision="3" />
+          <Property Name="TenderDate" Type="DateTime" Precision="3" />
+          <Property Name="TenderRemark" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="QPrint" Type="Int32" />
+          <Property Name="UserQPrint" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="OpitnQt" Type="Int32" />
+          <Property Name="EnqExtintion" Type="Int32" />
+          <Property Name="DefectLiabilityDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="enq_tran">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="doc_no" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="doc_date" Type="DateTime" Precision="3" />
+          <Property Name="qot_no" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ord_no" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="jobsystemId" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="jobsystemname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="tstkgross" Type="Double" />
+          <Property Name="disc_per" Type="Double" />
+          <Property Name="disc_fix" Type="Double" />
+          <Property Name="margin_per" Type="Double" />
+          <Property Name="tstkamt" Type="Double" />
+          <Property Name="tstkcp" Type="Double" />
+          <Property Name="tstkdttrn" Type="DateTime" Precision="3" />
+          <Property Name="tcustcode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="tstkref" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="mat_cost" Type="Double" />
+          <Property Name="lab_cost" Type="Double" />
+          <Property Name="mat_per" Type="Double" />
+          <Property Name="lab_per" Type="Double" />
+          <Property Name="startdate1" Type="DateTime" Precision="3" />
+          <Property Name="startdate2" Type="DateTime" Precision="3" />
+          <Property Name="startdate3" Type="DateTime" Precision="3" />
+          <Property Name="mat_del_date" Type="DateTime" Precision="3" />
+          <Property Name="job_hand_date" Type="DateTime" Precision="3" />
+          <Property Name="show1" Type="Byte" />
+          <Property Name="show2" Type="Byte" />
+          <Property Name="show3" Type="Byte" />
+          <Property Name="flaage" Type="Int32" />
+          <Property Name="canceled" Type="Boolean" />
+          <Property Name="transfer" Type="Boolean" />
+          <Property Name="RemarkMod" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Replacement" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FlageFinish" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Edit" Type="Boolean" />
+          <Property Name="MainsFrom_date" Type="DateTime" Precision="3" />
+          <Property Name="MainsTo_date" Type="DateTime" Precision="3" />
+          <Property Name="del_per" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="del_amount" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="joblabcost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="doc_no" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="jobsystemId" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Jobcode" Type="Int32" />
+          <Property Name="job_per" Type="Double" />
+          <Property Name="weight_per" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="taskname" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="empcode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="qty_man" Type="Int32" />
+          <Property Name="qty_item" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="unit" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="time_min" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="factor" Type="Int32" />
+          <Property Name="tot_time_hour" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="hr_cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="tot_cost" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="blanklines" Type="Int32" />
+          <Property Name="srno" Type="Int32" />
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="flageTrans" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="flagecancel" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="flagereplese" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="flageEdit" Type="Int32" />
+          <Property Name="flageFix" Type="Int32" />
+        </EntityType>
+        <EntityType Name="joblabwork">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="doc_no" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="jobno" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="jobsystemId" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="qty_item" Type="Decimal" Precision="18" Scale="1" />
+          <Property Name="rowno" Type="Int32" />
+          <Property Name="joblabcostId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="jobdate" Type="DateTime" Precision="3" />
+          <Property Name="FlageMod" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="fromtime" Type="DateTime" Precision="3" />
+          <Property Name="totime" Type="DateTime" Precision="3" />
+          <Property Name="JobCode" Type="Int32" />
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="time_min" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="activity" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="SystemName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="hr_cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="qty_man" Type="Int32" />
+          <Property Name="totTime_hrs" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="OutSourceDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="doc_no" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="jobno" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="jobsystemid" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="jobdate" Type="DateTime" Precision="3" />
+          <Property Name="noOfOutsource" Type="Int32" />
+          <Property Name="fromtime" Type="DateTime" Precision="3" />
+          <Property Name="totime" Type="DateTime" Precision="3" />
+          <Property Name="companyName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="JobLabWorkTemp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="TaskName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="PlanTime" />
+          <Property Type="Double" Name="Worjtime" />
+          <Property Type="Double" Name="Balance" />
+        </EntityType>
+        <EntityType Name="empTmp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="EmpId" />
+          <Property Type="String" Name="WorkId" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmpName" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="groupId" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="jobplanday">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="EmpId" />
+          <Property Type="DateTime" Name="trandate" Precision="3" />
+          <Property Type="String" Name="Jobno" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JobsystemId" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="trantime" />
+          <Property Type="Byte" Name="Jobcode" />
+          <Property Type="String" Name="doc_no" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="jobWork" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="timealloc" Precision="19" Scale="4" />
+          <Property Type="Int64" Name="JobPlanMonthId" />
+          <Property Type="Int32" Name="PlanNo" />
+        </EntityType>
+        <EntityType Name="JobDailyProduction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="doc_no" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="jobsystemId" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="jobno" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Jobcode" />
+          <Property Type="Decimal" Name="job_per" Precision="19" Scale="4" />
+          <Property Type="String" Name="weight_per" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="taskname" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="empcode" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="qty_man" />
+          <Property Type="Decimal" Name="qty_item" Precision="19" Scale="4" />
+          <Property Type="String" Name="unit" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="time_min" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="factor" />
+          <Property Type="String" Name="tot_time_hour" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="hr_cost" Precision="19" Scale="4" />
+          <Property Type="String" Name="tot_cost" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="blanklines" />
+          <Property Type="Int32" Name="srno" />
+          <Property Type="Decimal" Name="flageTrans" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="flagecancel" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="flagereplese" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="flageEdit" />
+          <Property Type="Int32" Name="flageFix" />
+          <Property Type="Decimal" Name="PlanQty" Precision="19" Scale="4" />
+          <Property Type="String" Name="PlanDay" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="QtyDone" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="Qty" Precision="19" Scale="4" />
+          <Property Type="String" Name="Notes" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="FromTime" Precision="3" />
+          <Property Type="DateTime" Name="ToTime" Precision="3" />
+          <Property Type="DateTime" Name="Updatedate" Precision="3" />
+          <Property Type="String" Name="joblabcostId" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ondate" Precision="3" />
+          <Property Type="String" Name="groupid" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="joblabworkemp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="doc_no" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="jobno" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="jobsystemId" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="jobdate" Precision="3" />
+          <Property Type="String" Name="ac_code" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="empid" />
+          <Property Type="String" Name="workid" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="empname" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Notes" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="fromtime" Precision="3" />
+          <Property Type="DateTime" Name="totime" Precision="3" />
+          <Property Type="String" Name="groupid" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InterfutureModelStoreContainer" CdmEntityContainer="InterfutureEntities">
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="InterfutureModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="empID" ColumnName="empID" />
+                <ScalarProperty Name="ac_code" ColumnName="ac_code" />
+                <ScalarProperty Name="empname" ColumnName="empname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="NationId" ColumnName="NationId" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="jobID" ColumnName="jobID" />
+                <ScalarProperty Name="emptypeID" ColumnName="emptypeID" />
+                <ScalarProperty Name="EmptypeName" ColumnName="EmptypeName" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+                <ScalarProperty Name="workname" ColumnName="workname" />
+                <ScalarProperty Name="workID" ColumnName="workID" />
+                <ScalarProperty Name="workType" ColumnName="workType" />
+                <ScalarProperty Name="GradeID" ColumnName="GradeID" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="starmark" ColumnName="starmark" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="jobend" ColumnName="jobend" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="FileNo" ColumnName="FileNo" />
+                <ScalarProperty Name="PassportNo" ColumnName="PassportNo" />
+                <ScalarProperty Name="PassportIssueDate" ColumnName="PassportIssueDate" />
+                <ScalarProperty Name="PassportExpiryDate" ColumnName="PassportExpiryDate" />
+                <ScalarProperty Name="LaborNo" ColumnName="LaborNo" />
+                <ScalarProperty Name="LaborIssueDate" ColumnName="LaborIssueDate" />
+                <ScalarProperty Name="LaborExpiryDate" ColumnName="LaborExpiryDate" />
+                <ScalarProperty Name="VisaNo" ColumnName="VisaNo" />
+                <ScalarProperty Name="VisaIssueDate" ColumnName="VisaIssueDate" />
+                <ScalarProperty Name="VisaExpiryDate" ColumnName="VisaExpiryDate" />
+                <ScalarProperty Name="EmidNo" ColumnName="EmidNo" />
+                <ScalarProperty Name="EmidIssueDate" ColumnName="EmidIssueDate" />
+                <ScalarProperty Name="EmidExpiryDate" ColumnName="EmidExpiryDate" />
+                <ScalarProperty Name="HealthNo" ColumnName="HealthNo" />
+                <ScalarProperty Name="HealthIssueDate" ColumnName="HealthIssueDate" />
+                <ScalarProperty Name="HealthExpiryDate" ColumnName="HealthExpiryDate" />
+                <ScalarProperty Name="DrivingLicNo" ColumnName="DrivingLicNo" />
+                <ScalarProperty Name="DrivingLicIssueDate" ColumnName="DrivingLicIssueDate" />
+                <ScalarProperty Name="DrivingLicExpiryDate" ColumnName="DrivingLicExpiryDate" />
+                <ScalarProperty Name="DrivingLicType" ColumnName="DrivingLicType" />
+                <ScalarProperty Name="LabRegDate" ColumnName="LabRegDate" />
+                <ScalarProperty Name="WorkcountryID" ColumnName="WorkcountryID" />
+                <ScalarProperty Name="WorkAddress1" ColumnName="WorkAddress1" />
+                <ScalarProperty Name="WorkAddress2" ColumnName="WorkAddress2" />
+                <ScalarProperty Name="WorkCity" ColumnName="WorkCity" />
+                <ScalarProperty Name="WorkState" ColumnName="WorkState" />
+                <ScalarProperty Name="WorkCountry" ColumnName="WorkCountry" />
+                <ScalarProperty Name="WorkPostbox" ColumnName="WorkPostbox" />
+                <ScalarProperty Name="WorkTelno" ColumnName="WorkTelno" />
+                <ScalarProperty Name="WorkMobno" ColumnName="WorkMobno" />
+                <ScalarProperty Name="HomecountryID" ColumnName="HomecountryID" />
+                <ScalarProperty Name="HomeAddress1" ColumnName="HomeAddress1" />
+                <ScalarProperty Name="HomeAddress2" ColumnName="HomeAddress2" />
+                <ScalarProperty Name="HomeCity" ColumnName="HomeCity" />
+                <ScalarProperty Name="HomeState" ColumnName="HomeState" />
+                <ScalarProperty Name="HomeCountry" ColumnName="HomeCountry" />
+                <ScalarProperty Name="HomePostBox" ColumnName="HomePostBox" />
+                <ScalarProperty Name="HomeTelno" ColumnName="HomeTelno" />
+                <ScalarProperty Name="HomeMobno" ColumnName="HomeMobno" />
+                <ScalarProperty Name="Salary_Basic" ColumnName="Salary_Basic" />
+                <ScalarProperty Name="Salary_Hra" ColumnName="Salary_Hra" />
+                <ScalarProperty Name="Salary_Transport" ColumnName="Salary_Transport" />
+                <ScalarProperty Name="Salary_Other" ColumnName="Salary_Other" />
+                <ScalarProperty Name="Airticket" ColumnName="Airticket" />
+                <ScalarProperty Name="BankTransfer" ColumnName="BankTransfer" />
+                <ScalarProperty Name="LaborRegDate" ColumnName="LaborRegDate" />
+                <ScalarProperty Name="Bankno" ColumnName="Bankno" />
+                <ScalarProperty Name="Bankname" ColumnName="Bankname" />
+                <ScalarProperty Name="IncrementDate" ColumnName="IncrementDate" />
+                <ScalarProperty Name="IncrementAmount" ColumnName="IncrementAmount" />
+                <ScalarProperty Name="IncrementReason" ColumnName="IncrementReason" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Imagepath" ColumnName="Imagepath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enq_mast">
+            <EntityTypeMapping TypeName="InterfutureModel.enq_mast">
+              <MappingFragment StoreEntitySet="enq_mast">
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="doc_date" ColumnName="doc_date" />
+                <ScalarProperty Name="doc_rev" ColumnName="doc_rev" />
+                <ScalarProperty Name="custTypeId" ColumnName="custTypeId" />
+                <ScalarProperty Name="ac_code" ColumnName="ac_code" />
+                <ScalarProperty Name="CustName" ColumnName="CustName" />
+                <ScalarProperty Name="owner_code" ColumnName="owner_code" />
+                <ScalarProperty Name="owner_name" ColumnName="owner_name" />
+                <ScalarProperty Name="contactId" ColumnName="contactId" />
+                <ScalarProperty Name="Inv_Code" ColumnName="Inv_Code" />
+                <ScalarProperty Name="reqNatureId" ColumnName="reqNatureId" />
+                <ScalarProperty Name="reqNatureName" ColumnName="reqNatureName" />
+                <ScalarProperty Name="tpc_yn" ColumnName="tpc_yn" />
+                <ScalarProperty Name="tpc_cust" ColumnName="tpc_cust" />
+                <ScalarProperty Name="tpc_per" ColumnName="tpc_per" />
+                <ScalarProperty Name="tpc_amt" ColumnName="tpc_amt" />
+                <ScalarProperty Name="enq_source" ColumnName="enq_source" />
+                <ScalarProperty Name="enq_rct_by" ColumnName="enq_rct_by" />
+                <ScalarProperty Name="enq_re" ColumnName="enq_re" />
+                <ScalarProperty Name="enq_se" ColumnName="enq_se" />
+                <ScalarProperty Name="enq_se_date" ColumnName="enq_se_date" />
+                <ScalarProperty Name="enq_est_date" ColumnName="enq_est_date" />
+                <ScalarProperty Name="enq_job_date" ColumnName="enq_job_date" />
+                <ScalarProperty Name="enq_qot_date" ColumnName="enq_qot_date" />
+                <ScalarProperty Name="qot_rct_by" ColumnName="qot_rct_by" />
+                <ScalarProperty Name="qot_rct_date" ColumnName="qot_rct_date" />
+                <ScalarProperty Name="qot_no" ColumnName="qot_no" />
+                <ScalarProperty Name="qot_date" ColumnName="qot_date" />
+                <ScalarProperty Name="qot_amt" ColumnName="qot_amt" />
+                <ScalarProperty Name="remarks1" ColumnName="remarks1" />
+                <ScalarProperty Name="remarks2" ColumnName="remarks2" />
+                <ScalarProperty Name="job_name" ColumnName="job_name" />
+                <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="tselect" ColumnName="tselect" />
+                <ScalarProperty Name="enq_level" ColumnName="enq_level" />
+                <ScalarProperty Name="enq_status" ColumnName="enq_status" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="ord_no" ColumnName="ord_no" />
+                <ScalarProperty Name="ord_date" ColumnName="ord_date" />
+                <ScalarProperty Name="ext_job" ColumnName="ext_job" />
+                <ScalarProperty Name="complaintno" ColumnName="complaintno" />
+                <ScalarProperty Name="reasonId" ColumnName="reasonId" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="job_status" ColumnName="job_status" />
+                <ScalarProperty Name="enq_read" ColumnName="enq_read" />
+                <ScalarProperty Name="enq_typeId" ColumnName="enq_typeId" />
+                <ScalarProperty Name="tstkamt" ColumnName="tstkamt" />
+                <ScalarProperty Name="plotno" ColumnName="plotno" />
+                <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
+                <ScalarProperty Name="enq_level_old" ColumnName="enq_level_old" />
+                <ScalarProperty Name="enq_status_old" ColumnName="enq_status_old" />
+                <ScalarProperty Name="mat_cost" ColumnName="mat_cost" />
+                <ScalarProperty Name="lab_cost" ColumnName="lab_cost" />
+                <ScalarProperty Name="disc_fix" ColumnName="disc_fix" />
+                <ScalarProperty Name="lpo_no" ColumnName="lpo_no" />
+                <ScalarProperty Name="pay_terms" ColumnName="pay_terms" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+                <ScalarProperty Name="jobdecline_date" ColumnName="jobdecline_date" />
+                <ScalarProperty Name="jobopen_date" ColumnName="jobopen_date" />
+                <ScalarProperty Name="jobhand_date" ColumnName="jobhand_date" />
+                <ScalarProperty Name="jobclose_date" ColumnName="jobclose_date" />
+                <ScalarProperty Name="jobwarranty_date" ColumnName="jobwarranty_date" />
+                <ScalarProperty Name="Mod_job" ColumnName="Mod_job" />
+                <ScalarProperty Name="Amtpay" ColumnName="Amtpay" />
+                <ScalarProperty Name="AmtpayVout" ColumnName="AmtpayVout" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="EngStatuse" ColumnName="EngStatuse" />
+                <ScalarProperty Name="Edit" ColumnName="Edit" />
+                <ScalarProperty Name="MainsFrom_date" ColumnName="MainsFrom_date" />
+                <ScalarProperty Name="MainsTo_date" ColumnName="MainsTo_date" />
+                <ScalarProperty Name="TenderDate" ColumnName="TenderDate" />
+                <ScalarProperty Name="TenderRemark" ColumnName="TenderRemark" />
+                <ScalarProperty Name="QPrint" ColumnName="QPrint" />
+                <ScalarProperty Name="UserQPrint" ColumnName="UserQPrint" />
+                <ScalarProperty Name="OpitnQt" ColumnName="OpitnQt" />
+                <ScalarProperty Name="EnqExtintion" ColumnName="EnqExtintion" />
+                <ScalarProperty Name="DefectLiabilityDate" ColumnName="DefectLiabilityDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enq_tran">
+            <EntityTypeMapping TypeName="InterfutureModel.enq_tran">
+              <MappingFragment StoreEntitySet="enq_tran">
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="doc_date" ColumnName="doc_date" />
+                <ScalarProperty Name="qot_no" ColumnName="qot_no" />
+                <ScalarProperty Name="ord_no" ColumnName="ord_no" />
+                <ScalarProperty Name="jobsystemId" ColumnName="jobsystemId" />
+                <ScalarProperty Name="jobsystemname" ColumnName="jobsystemname" />
+                <ScalarProperty Name="tstkgross" ColumnName="tstkgross" />
+                <ScalarProperty Name="disc_per" ColumnName="disc_per" />
+                <ScalarProperty Name="disc_fix" ColumnName="disc_fix" />
+                <ScalarProperty Name="margin_per" ColumnName="margin_per" />
+                <ScalarProperty Name="tstkamt" ColumnName="tstkamt" />
+                <ScalarProperty Name="tstkcp" ColumnName="tstkcp" />
+                <ScalarProperty Name="tstkdttrn" ColumnName="tstkdttrn" />
+                <ScalarProperty Name="tcustcode" ColumnName="tcustcode" />
+                <ScalarProperty Name="tstkref" ColumnName="tstkref" />
+                <ScalarProperty Name="mat_cost" ColumnName="mat_cost" />
+                <ScalarProperty Name="lab_cost" ColumnName="lab_cost" />
+                <ScalarProperty Name="mat_per" ColumnName="mat_per" />
+                <ScalarProperty Name="lab_per" ColumnName="lab_per" />
+                <ScalarProperty Name="startdate1" ColumnName="startdate1" />
+                <ScalarProperty Name="startdate2" ColumnName="startdate2" />
+                <ScalarProperty Name="startdate3" ColumnName="startdate3" />
+                <ScalarProperty Name="mat_del_date" ColumnName="mat_del_date" />
+                <ScalarProperty Name="job_hand_date" ColumnName="job_hand_date" />
+                <ScalarProperty Name="show1" ColumnName="show1" />
+                <ScalarProperty Name="show2" ColumnName="show2" />
+                <ScalarProperty Name="show3" ColumnName="show3" />
+                <ScalarProperty Name="flaage" ColumnName="flaage" />
+                <ScalarProperty Name="canceled" ColumnName="canceled" />
+                <ScalarProperty Name="transfer" ColumnName="transfer" />
+                <ScalarProperty Name="RemarkMod" ColumnName="RemarkMod" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Replacement" ColumnName="Replacement" />
+                <ScalarProperty Name="FlageFinish" ColumnName="FlageFinish" />
+                <ScalarProperty Name="Edit" ColumnName="Edit" />
+                <ScalarProperty Name="MainsFrom_date" ColumnName="MainsFrom_date" />
+                <ScalarProperty Name="MainsTo_date" ColumnName="MainsTo_date" />
+                <ScalarProperty Name="del_per" ColumnName="del_per" />
+                <ScalarProperty Name="del_amount" ColumnName="del_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="joblabcosts">
+            <EntityTypeMapping TypeName="InterfutureModel.joblabcost">
+              <MappingFragment StoreEntitySet="joblabcost">
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="jobsystemId" ColumnName="jobsystemId" />
+                <ScalarProperty Name="Jobcode" ColumnName="Jobcode" />
+                <ScalarProperty Name="job_per" ColumnName="job_per" />
+                <ScalarProperty Name="weight_per" ColumnName="weight_per" />
+                <ScalarProperty Name="taskname" ColumnName="taskname" />
+                <ScalarProperty Name="empcode" ColumnName="empcode" />
+                <ScalarProperty Name="qty_man" ColumnName="qty_man" />
+                <ScalarProperty Name="qty_item" ColumnName="qty_item" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="time_min" ColumnName="time_min" />
+                <ScalarProperty Name="factor" ColumnName="factor" />
+                <ScalarProperty Name="tot_time_hour" ColumnName="tot_time_hour" />
+                <ScalarProperty Name="hr_cost" ColumnName="hr_cost" />
+                <ScalarProperty Name="tot_cost" ColumnName="tot_cost" />
+                <ScalarProperty Name="blanklines" ColumnName="blanklines" />
+                <ScalarProperty Name="srno" ColumnName="srno" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="flageTrans" ColumnName="flageTrans" />
+                <ScalarProperty Name="flagecancel" ColumnName="flagecancel" />
+                <ScalarProperty Name="flagereplese" ColumnName="flagereplese" />
+                <ScalarProperty Name="flageEdit" ColumnName="flageEdit" />
+                <ScalarProperty Name="flageFix" ColumnName="flageFix" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="joblabworks">
+            <EntityTypeMapping TypeName="InterfutureModel.joblabwork">
+              <MappingFragment StoreEntitySet="joblabwork">
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="jobno" ColumnName="jobno" />
+                <ScalarProperty Name="jobsystemId" ColumnName="jobsystemId" />
+                <ScalarProperty Name="qty_item" ColumnName="qty_item" />
+                <ScalarProperty Name="rowno" ColumnName="rowno" />
+                <ScalarProperty Name="joblabcostId" ColumnName="joblabcostId" />
+                <ScalarProperty Name="jobdate" ColumnName="jobdate" />
+                <ScalarProperty Name="FlageMod" ColumnName="FlageMod" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="fromtime" ColumnName="fromtime" />
+                <ScalarProperty Name="totime" ColumnName="totime" />
+                <ScalarProperty Name="JobCode" ColumnName="JobCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="time_min" ColumnName="time_min" />
+                <ScalarProperty Name="activity" ColumnName="activity" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="hr_cost" ColumnName="hr_cost" />
+                <ScalarProperty Name="qty_man" ColumnName="qty_man" />
+                <ScalarProperty Name="totTime_hrs" ColumnName="totTime_hrs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OutSourceDetails">
+            <EntityTypeMapping TypeName="InterfutureModel.OutSourceDetail">
+              <MappingFragment StoreEntitySet="OutSourceDetails">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="jobno" ColumnName="jobno" />
+                <ScalarProperty Name="jobsystemid" ColumnName="jobsystemid" />
+                <ScalarProperty Name="jobdate" ColumnName="jobdate" />
+                <ScalarProperty Name="noOfOutsource" ColumnName="noOfOutsource" />
+                <ScalarProperty Name="fromtime" ColumnName="fromtime" />
+                <ScalarProperty Name="totime" ColumnName="totime" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobLabWorkTemps">
+            <EntityTypeMapping TypeName="InterfutureModel.JobLabWorkTemp">
+              <MappingFragment StoreEntitySet="JobLabWorkTemp">
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Worjtime" ColumnName="Worjtime" />
+                <ScalarProperty Name="PlanTime" ColumnName="PlanTime" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empTmps">
+            <EntityTypeMapping TypeName="InterfutureModel.empTmp">
+              <MappingFragment StoreEntitySet="empTmp">
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="WorkId" ColumnName="WorkId" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jobplandays">
+            <EntityTypeMapping TypeName="InterfutureModel.jobplanday">
+              <MappingFragment StoreEntitySet="jobplanday">
+                <ScalarProperty Name="PlanNo" ColumnName="PlanNo" />
+                <ScalarProperty Name="JobPlanMonthId" ColumnName="JobPlanMonthId" />
+                <ScalarProperty Name="timealloc" ColumnName="timealloc" />
+                <ScalarProperty Name="jobWork" ColumnName="jobWork" />
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="Jobcode" ColumnName="Jobcode" />
+                <ScalarProperty Name="trantime" ColumnName="trantime" />
+                <ScalarProperty Name="JobsystemId" ColumnName="JobsystemId" />
+                <ScalarProperty Name="Jobno" ColumnName="Jobno" />
+                <ScalarProperty Name="trandate" ColumnName="trandate" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobDailyProductions">
+            <EntityTypeMapping TypeName="InterfutureModel.JobDailyProduction">
+              <MappingFragment StoreEntitySet="JobDailyProduction">
+                <ScalarProperty Name="groupid" ColumnName="groupid" />
+                <ScalarProperty Name="ondate" ColumnName="ondate" />
+                <ScalarProperty Name="joblabcostId" ColumnName="joblabcostId" />
+                <ScalarProperty Name="Updatedate" ColumnName="Updatedate" />
+                <ScalarProperty Name="ToTime" ColumnName="ToTime" />
+                <ScalarProperty Name="FromTime" ColumnName="FromTime" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="QtyDone" ColumnName="QtyDone" />
+                <ScalarProperty Name="PlanDay" ColumnName="PlanDay" />
+                <ScalarProperty Name="PlanQty" ColumnName="PlanQty" />
+                <ScalarProperty Name="flageFix" ColumnName="flageFix" />
+                <ScalarProperty Name="flageEdit" ColumnName="flageEdit" />
+                <ScalarProperty Name="flagereplese" ColumnName="flagereplese" />
+                <ScalarProperty Name="flagecancel" ColumnName="flagecancel" />
+                <ScalarProperty Name="flageTrans" ColumnName="flageTrans" />
+                <ScalarProperty Name="srno" ColumnName="srno" />
+                <ScalarProperty Name="blanklines" ColumnName="blanklines" />
+                <ScalarProperty Name="tot_cost" ColumnName="tot_cost" />
+                <ScalarProperty Name="hr_cost" ColumnName="hr_cost" />
+                <ScalarProperty Name="tot_time_hour" ColumnName="tot_time_hour" />
+                <ScalarProperty Name="factor" ColumnName="factor" />
+                <ScalarProperty Name="time_min" ColumnName="time_min" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="qty_item" ColumnName="qty_item" />
+                <ScalarProperty Name="qty_man" ColumnName="qty_man" />
+                <ScalarProperty Name="empcode" ColumnName="empcode" />
+                <ScalarProperty Name="taskname" ColumnName="taskname" />
+                <ScalarProperty Name="weight_per" ColumnName="weight_per" />
+                <ScalarProperty Name="job_per" ColumnName="job_per" />
+                <ScalarProperty Name="Jobcode" ColumnName="Jobcode" />
+                <ScalarProperty Name="jobno" ColumnName="jobno" />
+                <ScalarProperty Name="jobsystemId" ColumnName="jobsystemId" />
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="joblabworkemps">
+            <EntityTypeMapping TypeName="InterfutureModel.joblabworkemp">
+              <MappingFragment StoreEntitySet="joblabworkemp">
+                <ScalarProperty Name="groupid" ColumnName="groupid" />
+                <ScalarProperty Name="totime" ColumnName="totime" />
+                <ScalarProperty Name="fromtime" ColumnName="fromtime" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="empname" ColumnName="empname" />
+                <ScalarProperty Name="workid" ColumnName="workid" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="ac_code" ColumnName="ac_code" />
+                <ScalarProperty Name="jobdate" ColumnName="jobdate" />
+                <ScalarProperty Name="jobsystemId" ColumnName="jobsystemId" />
+                <ScalarProperty Name="jobno" ColumnName="jobno" />
+                <ScalarProperty Name="doc_no" ColumnName="doc_no" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams />
+  </Designer>
+</edmx:Edmx>

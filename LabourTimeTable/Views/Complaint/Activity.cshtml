@@ -1,0 +1,270 @@
+﻿@model LabourTimeTable.Models.ComplainDTO
+
+@{
+    ViewBag.Title = "Activity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-container">
+    <div class="page-content-wrapper">
+
+        <div class="page-content">
+            <h1 class="page-title">Timesheet
+			   
+				<small>Manage Activity</small>
+            </h1>
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="javascript:;"></a>
+                    </li>
+                    <li>
+                        <span>@DateTime.UtcNow.ToLongDateString()</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-social-dribbble font-red"></i>
+                        <span class="caption-subject font-red bold uppercase">Manage Complain Activity</span>
+                    </div>
+                    <div class="actions">
+                        <a href="~/Complaint/Complaint">Back</a>
+                    </div>
+                </div>
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger display-hide" style="display: block;">
+                        <button class="close" data-close="alert"></button>
+                        <span>@ViewBag.Error </span>
+                    </div>
+                }
+
+
+                <div class="well">
+                    <!-- BEGIN FORM-->
+                    <form method="post" id="form" class="form-horizontal">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Complain No</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtComplainNo" id="txtComplainNo" value="@Model.com_no" autocomplete="off" disabled="disabled" placeholder="Complain No" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Job No (Contract Maintenance No)</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtJobNo" id="txtJobNo"  value="@Model.com_job"  autocomplete="off" disabled="disabled" placeholder="Job No" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Customer</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtCustomer" id="txtCustomer" value="@Model.AC_NAME" autocomplete="off" disabled="disabled" placeholder="Customer" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Complain Subject</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtComplainName" id="txtComplainName" value="@Model.com_name" autocomplete="off" disabled="disabled" placeholder="Complain Name" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Project Name</label>
+                                <div class="col-md-4">
+                                    <textarea rows="4" cols="50" class="form-control" style="resize: none;" readonly="readonly" id="txtProjectName" name="txtDescription" placeholder="Project Name">@Model.Job_name</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Complain Description</label>
+                                <div class="col-md-4">
+                                    <textarea rows="4" cols="50" class="form-control" style="resize: none;" readonly="readonly" id="txtDescription" name="txtDescription" placeholder="Description">@Model.com_narration</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Technical Description</label>
+                                <div class="col-md-4">
+                                    <textarea rows="4" cols="50" class="form-control" style="resize: none;" id="txtTechnicalDescription" name="txtTechnicalDescription" placeholder="Technical Description"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Technical Solution</label>
+                                <div class="col-md-4">
+                                    <textarea rows="4" cols="50" class="form-control" style="resize: none;" id="txtTechnicalSolution" name="txtTechnicalSolution" placeholder="Technical Solution"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Remarks</label>
+                                <div class="col-md-4">
+                                    <textarea rows="4" cols="50" class="form-control" style="resize: none;" id="txtRemarks" name="txtRemarks" placeholder="Remarks"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Solved</label>
+                                <div class="col-md-4">
+                                    <select id="ddlissolved" class="bs-select form-control">
+                                        <option value="0">Select</option>
+                                        <option value="YES">Yes</option>
+                                        <option value="NO">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="divReason">
+                                <label class="col-md-3 control-label">Reason</label>
+                                <div class="col-md-4">
+                                    <textarea rows="4" cols="50" class="form-control" style="resize: none;" id="txtReason" name="txtReason" placeholder="Reason"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button type="button" id="btnSave" class="btn green">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .autocomplete-items {
+        height: 200px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: absolute;
+        padding: 0px 0px 0px 15px;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+            .autocomplete-items div:hover {
+                /*when hovering an item:*/
+                background-color: DodgerBlue !important;
+                color: #ffffff;
+            }
+
+    .autocomplete-active {
+        /*when navigating through the items using the arrow keys:*/
+        background-color: DodgerBlue !important;
+        color: #ffffff;
+    }
+
+    .Outsourcing {
+        display: none;
+    }
+
+    .clickable {
+        cursor: pointer;
+        background: #ffff99;
+    }
+
+    .loader {
+        display: none;
+    }
+</style>
+
+<link href="~/Custom_Scripts/auto_complete/jquery.auto-complete.css" rel="stylesheet" />
+<script src="~/Custom_Scripts/auto_complete/jquery.auto-complete.js"></script>
+<script src="~/Custom_Scripts/multiple-select/selectize.js"></script>
+<link href="~/Custom_Scripts/multiple-select/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="~/jquery.loading-overlay.js"></script>
+<script>
+
+
+    $('#divReason').hide();
+    $("#ddlissolved").change(function () {
+        if ($('#ddlissolved').val() == 'NO') {
+            $('#divReason').show();
+        }
+        else { $('#divReason').hide(); }
+    });
+
+    $(document).on("click", "#btnSave", function (e) {
+
+        if ($('#ddlissolved').val() == '0') {
+            alert('Please select solved (Yes/No).');
+            e.preventDefault();
+            return false;
+        }
+
+        if ($('#ddlissolved').val() == 'NO') {
+
+            if ($('#txtReason').val() == '') {
+                alert('Please enter reasons as work in progress.');
+                e.preventDefault();
+                return false;
+            }
+
+        }
+
+
+        var com_no = $("#txtComplainNo").val();
+        var is_solved = $('#ddlissolved').val()
+        var techproblem = $('#txtTechnicalDescription').val();
+        var techsolution = $('#txtTechnicalSolution').val();
+        var remarks = $('#txtRemarks').val();
+        var reason = $('#txtReason').val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Activity")',
+            data: JSON.stringify({ 'com_no': com_no, 'is_solved': is_solved, 'techproblem': techproblem, 'techsolution': techsolution, 'remarks': remarks, 'reason': reason }),
+            contentType: "application/json; charset=utf-8",
+            datatype: "text/plain",
+            success: function (data) {
+                e.preventDefault();
+                $(".popover").remove();
+                //$("#divPartialView").html(data);
+            },
+            error: function (data) {
+                e.preventDefault();
+                $(".popover").remove();
+                //$("#divPartialView").html(data);
+            }
+        });
+        return false;
+    });
+
+
+    $(document).on("click", "#btnPartialCancel", function (e) {
+        $(".popover").remove();
+    });
+
+    $(document).ajaxStart(function () {
+        $('.page-container').loader({
+            image: '../loader.gif'
+        });
+    }).ajaxStop(function () {
+        $('.page-container').loader('hide');
+    });
+
+
+</script>
+
+
+

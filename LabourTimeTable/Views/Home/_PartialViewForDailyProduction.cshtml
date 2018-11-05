@@ -1,0 +1,68 @@
+﻿@*@model LabourTimeTable.Models.SystemTaskDTO
+@{
+    Layout = null;
+}
+@{
+    var grid = new WebGrid(Model._JobDailyProductionList, canPage: true, rowsPerPage: 100, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid", ajaxUpdateCallback: "callBack");
+    grid.Pager(WebGridPagerModes.All);
+}*@
+
+<link href="~/theme/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+
+<div class="portlet-title">
+    <div class="caption">
+        System Tasks
+    </div>
+</div>
+<div class="portlet-body">
+    <div class="panel-group accordion" id="accordion3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle accordion-toggle-styled collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_1">System Task</a>
+                </h4>
+            </div>
+            <div id="collapse_3_1" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="table-responsive" id="table-responsive">
+                      @*  @grid.GetHtml(tableStyle: "table table-striped table-bordered table-hover dataTable no-footer dtr-inline",
+                                mode: WebGridPagerModes.All,
+                                firstText: "First",
+                                previousText: "Prev",
+                                nextText: "Next",
+                                lastText: "Last",
+                                footerStyle: "table-pager",
+                                columns: grid.Columns(
+                                grid.Column("taskname", "Task"),
+                                grid.Column("qty_item", header: "Qty Item", format: (item) => string.Format("{0:##.##}", item.qty_item)),
+                                grid.Column("QtyDone", header: "Qty Done", format: (item) => (item.QtyDone) != null ? item.QtyDone.ToString("##.##") : ""),
+                                grid.Column("Qty", format: (item) =>
+                                {
+                                    if (item.taskname == "" || item.taskname == "Pre-Installation" || item.taskname == "Installation Activities" || item.taskname == "System Alignment/ Testing & Commissioning" || item.taskname == "System Handover to Clients / Consultants")
+                                    {
+                                        return Html.Raw(string.Format("<text/>"));
+                                    }
+                                    else
+                                    {
+                                        return Html.Raw(Html.TextBox("" + (object)item.Id.ToString() + "", (object)item.Qty, new { @type = "number" }));
+                                    }
+                                }),
+                                grid.Column("Qty", "Floor")
+
+
+                                ))*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+

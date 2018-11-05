@@ -1,0 +1,302 @@
+﻿@{
+    ViewBag.Title = "Outsource Team";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+<link href="~/theme/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+<link href="~/theme/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
+@*<link href="~/theme/asset1/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />*@
+<link href="~/theme/assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
+
+<div class="page-container">
+
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <h1 class="page-title">
+                Timesheet
+
+                <small>Manage Employee Timesheet</small>
+            </h1>
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="javascript:;"></a>
+                    </li>
+                    <li>
+                        @*<span>DateTime.Now.ToLongDateString()</span>*@
+                    </li>
+                </ul>
+            </div>
+
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-social-dribbble font-red"></i>
+                        <span class="caption-subject font-red bold uppercase">Manage Outsource Employees</span>
+                    </div>
+                    <div class="actions">
+                        <a href="~/Home/Detail">Back</a>
+                    </div>
+                </div>
+                <div class="well">
+                    <!-- BEGIN FORM-->
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger display-hide" style="display: block;">
+                            <button class="close" data-close="alert"></button>
+                            <span>@ViewBag.Error </span>
+                        </div>
+                    }
+
+
+                    <div id="form" class="form-horizontal">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Outsource Company</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control input-tags demo-default" disabled="disabled" id="txtOutsourceCompany" name="txtOutsourceCompany" placeholder="Outsource Company">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">First Name</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtFirstName" id="txtFirstName" placeholder="First Name" autocomplete="off" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Middle Name</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="txtMiddleName" id="txtMiddleName" placeholder="Middle Name" autocomplete="off" class="form-control autocomplete-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Last Name</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="txtLastName" name="txtLastName" autocomplete="off" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Designation</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="txtDesignation" autocomplete="off" name="txtDesignation" placeholder="Designation">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Emirates ID</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="txtEmiratesID" autocomplete="off" name="txtEmiratesID" placeholder="Emirates ID">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Join Date</label>
+                                <div class="col-md-4">
+                                    @*<input type="text" class="form-control" id="txtJoinDate" name="txtJoinDate" placeholder="Join Date">*@
+                                    <input class="form-control form-control-inline date-picker" autocomplete="off" id="txtDefaultTime" name="txtDefaultTime" type="text" value="" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button id="btnsubmit" type="button" class="btn green">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                        @*</form>*@
+                    </div>
+                    <!-- END FORM-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .autocomplete-items {
+            height: 200px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            position: absolute;
+            padding: 0px 0px 0px 15px;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+
+            .autocomplete-items div {
+                padding: 10px;
+                cursor: pointer;
+                background-color: #fff;
+                border-bottom: 1px solid #d4d4d4;
+            }
+
+                .autocomplete-items div:hover {
+                    /*when hovering an item:*/
+                    background-color: DodgerBlue !important;
+                    color: #ffffff;
+                }
+
+        .autocomplete-active {
+            /*when navigating through the items using the arrow keys:*/
+            background-color: DodgerBlue !important;
+            color: #ffffff;
+        }
+
+        .loader {
+            display: none;
+        }
+
+        .Outsourcing {
+            display: none;
+        }
+    </style>
+
+    <script src="~/igorescobar/dist/jquery.mask.js"></script>
+    <script src="~/igorescobar/dist/jquery.mask.min.js"></script>
+
+    <link href="~/Custom_Scripts/auto_complete/jquery.auto-complete.css" rel="stylesheet" />
+    <script src="~/Custom_Scripts/auto_complete/jquery.auto-complete.js"></script>
+    <script src="~/Custom_Scripts/multiple-select/selectize.js"></script>
+    <link href="~/Custom_Scripts/multiple-select/selectize.bootstrap3.css" rel="stylesheet" />
+
+
+    <script src="~/theme/assets/global/plugins/moment.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="~/theme/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    @*<script src="~/theme/assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>*@
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="~/theme/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/theme/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+    <script src="~/jquery.loading-overlay.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+
+
+
+    <script>
+        $('#txtEmiratesID').mask('099-0999-0999999-9');
+        $.ajax({
+            type: "POST",
+            url: "/Home/GetProjectDetailList",
+            data: {},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (Result) {
+                $('#txtOutsourceCompany').removeAttr('disabled');
+                $('#txtOutsourceCompany').selectize({
+                    //plugins: ['remove_button'],
+                    persist: false,
+                    create: false,
+                    maxItems: 1,
+                    valueField: 'id',
+                    labelField: 'companyName',
+                    searchField: 'companyName',
+                    options: Result._OutSourceDetail,
+                    render: {
+                        item: function (data, escape) {
+                            return '<div>' + escape(data.companyName) + '</div>';
+                        }
+                    }
+                });
+            }
+        });
+
+        function validateEmiratesID(EmiratesID) {
+            var re = /^784-[0-9]{4}-[0-9]{7}-[0-9]{1}$/;
+            return re.test(String(EmiratesID).toLowerCase());
+        }
+
+        $('#btnsubmit').click(function (event) {
+
+            var val = $('#txtEmiratesID').val();
+            if ($('#txtOutsourceCompany').val() == '') {
+                alert('Please select outsource company name.');
+                event.preventDefault();
+                return false;
+            }
+            if ($('#txtFirstName').val() == '') {
+                alert('Please enter first name.');
+                event.preventDefault();
+                return false;
+            }
+            if ($('#txtLastName').val() == '') {
+                alert('Please enter last name.');
+                event.preventDefault();
+                return false;
+            }
+            if ($('#txtDesignation').val() == '') {
+                alert('Please enter designation.');
+                event.preventDefault();
+                return false;
+            }
+            if (validateEmiratesID(val) == false) {
+                alert('Please enter a valid EMIRATES ID');
+                event.preventDefault();
+                return false;
+            }
+            if ($('#txtDefaultTime').val() == '') {
+                alert('Please enter joining date.');
+                event.preventDefault();
+                return false;
+            }
+            $('.page-container').loader({
+                image: '../loader.gif'
+            });
+
+            var OutsourcePostDTO = {
+                "OutsourceCompany": $('#txtOutsourceCompany').val(),
+                "EmiratesID": $('#txtEmiratesID').val(),
+                "FirstName": $('#txtFirstName').val(),
+                "MiddleName": $('#txtMiddleName').val(),
+                "LastName": $('#txtLastName').val(),
+                "Designation": $('#txtDesignation').val(),
+                "JoinDate": $('#txtDefaultTime').val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/Outsource/ifEmiratesIdExist",
+                data: JSON.stringify({ 'EmiratesID': val }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result === '1') {
+                        $.ajax({
+                            url: "/Outsource/RegisterOutsourceTeam",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            //dataType: "html",
+                            data: JSON.stringify(OutsourcePostDTO),
+                            success: function (resultx) {
+                                alert("Outsourced Employee Added.");
+                                $('.page-container').loader('hide');
+                                location.reload();
+                            },
+                            error: function (resultx) {
+                                alert("Some Error!!");
+                                $('.page-container').loader('hide');
+                                //location.reload();
+                            }
+                        });
+                    }
+                    else {
+                        alert("Labor with Emirates ID already exists");
+                        $('.page-container').loader('hide');
+                        event.preventDefault();
+                        return false;
+                    }
+                }
+            });
+
+
+
+        });
+
+    </script>

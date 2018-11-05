@@ -1,0 +1,208 @@
+﻿@model IEnumerable<LabourTimeTable.Models.TimesheetExceptionDTO>
+@{
+    ViewBag.Title = "Over Time";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Over Time</h2>
+
+@{
+    var grid = new WebGrid(Model, canPage: true, canSort: false, rowsPerPage: 200, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<link href="~/theme/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+@*<script src="~/theme/assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>*@
+<div class="page-container">
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <h1 class="page-title">Timesheet
+			   
+				<small>Manage Labour Timesheet</small>
+            </h1>
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="javascript:;"></a>
+                    </li>
+                    <li>
+                        <span>@DateTime.UtcNow.ToLongDateString()</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-red-sunglo">
+                        <i class="icon-settings font-red-sunglo"></i>
+                        <span class="caption-subject bold uppercase">Worked More Than 9 Hours</span>
+                    </div>
+                    <div class="actions">
+                        <div class="btn-group">
+                            <a class="btn btn-sm green bold uppercase" href="~/Dashboard/Home"><i class="icon-home"></i> BACK</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger display-hide" style="display: block;">
+                        <button class="close" data-close="alert"></button>
+                        <span>@ViewBag.Error </span>
+                    </div>
+                }
+                <div class="well">
+
+                    <div id="form" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                From
+								<input id="datepicker" name="datepicker" class="form-control form-control-inline input-medium date-picker" placeholder="Start Date" size="16" type="text" />
+                                <span class="help-block"></span>
+                            </div>
+
+                            <div class="col-md-3">
+                                To
+								<input id="datepicker2" name="datepicker2" placeholder="End Date" class="form-control form-control-inline input-medium date-picker" size="16" type="text" />
+                                <span class="help-block"></span>
+                            </div>
+                            <div class="col-md-3">
+                                Employee
+								<input type="text" name="txtEmployee" id="txtEmployee" autocomplete="off" disabled="disabled" placeholder="Employee" class="form-control form-control-inline input-medium autocomplete-input">
+                            </div>
+                            <div class="col-md-3">
+                                <span class="help-block" style="margin-top: 18px;"></span>
+                                <button type="submit" id="btnsubmit" class="btn green">Submit</button>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="divPartialView">
+                        @Html.Partial("~/Views/Dashboard/_PartialViewGridWorkedOveTimeDashboard.cshtml", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .table-responsive > .table > tbody > tr > td, .table-responsive > .table > tbody > tr > th, .table-responsive > .table > tfoot > tr > td, .table-responsive > .table > tfoot > tr > th, .table-responsive > .table > thead > tr > td, .table-responsive > .table > thead > tr > th {
+        white-space: normal;
+    }
+
+    .loader {
+        display: none;
+    }
+
+    .table-pager > td {
+        padding-top: 10px;
+    }
+
+        .table-pager > td > a {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 3px 7px;
+        }
+
+            .table-pager > td > a:hover {
+                /*background-color: #f0f0f0;*/
+                background-color: #4CAF90;
+            }
+</style>
+
+
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="~/Custom_Scripts/auto_complete/jquery.auto-complete.css" rel="stylesheet" />
+<script src="~/Custom_Scripts/auto_complete/jquery.auto-complete.js"></script>
+<script src="~/Custom_Scripts/multiple-select/selectize.js"></script>
+<link href="~/Custom_Scripts/multiple-select/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="~/jquery.loading-overlay.js"></script>
+<script src="~/theme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="~/theme/assets/global/scripts/app.min.js" type="text/javascript"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Dashboard/GetEmployeeList",
+            data: {},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (Result) {
+                $('#txtEmployee').removeAttr('disabled');
+                $('#txtEmployee').selectize({
+                    //plugins: ['remove_button'],
+                    persist: false,
+                    create: false,
+                    maxItems: 1,
+                    valueField: 'empID',
+                    labelField: 'Firstname',
+                    searchField: 'Firstname',
+                    options: Result._employee,
+                    render: {
+                        item: function (data, escape) {
+                            return '<div>' + escape(data.Firstname) + '</div>';
+                        }
+                    }
+                });
+            }
+        });
+
+        var DateTime = new Date();
+        DateTime.setMonth(DateTime.getMonth(), DateTime.getDate());
+        $("#datepicker").val($.datepicker.formatDate('dd/mm/yy', DateTime));
+        $("#datepicker2").val($.datepicker.formatDate('dd/mm/yy', DateTime));
+
+        var date = new Date();
+        var currentMonth = date.getMonth();
+        var currentDate = date.getDate();
+        var currentYear = date.getFullYear();
+
+        $('#datepicker2').datepicker({
+            setDate: new Date(currentYear, currentMonth, currentDate),
+            autoclose: true,
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $('#datepicker').datepicker({
+            minDate: new Date(currentYear, currentMonth, currentDate),
+            autoclose: true,
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+    $('#btnsubmit').click(function (event) {
+        event.preventDefault();
+        $('.page-container').loader({
+            image: '../loader.gif'
+        });
+        var date1 = $('#datepicker').val();
+        var date2 = $('#datepicker2').val();
+        var Employee = $('#txtEmployee').val();
+        $.ajax({
+            url: "/Dashboard/WorkedMoreThan9HoursPartialView",
+            contentType: "application/html; charset=utf-8",
+            data: { 'datepicker': date1, 'datepicker2': date2, 'Employee': Employee },
+            type: "GET",
+            cache: !0,
+            datatype: "html",
+            success: function (t) {
+                $("#divPartialView").html(t)
+                $('.page-container').loader('hide');
+            },
+            error: function () {
+                $("#divPartialView").html("Post Not Found")
+                $('.page-container').loader('hide');
+            }
+        });
+        return false;
+    });
+</script>
+

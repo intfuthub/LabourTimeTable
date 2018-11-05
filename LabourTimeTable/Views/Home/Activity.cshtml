@@ -1,0 +1,336 @@
+﻿@model LabourTimeTable.Models.ActivityGetDTO
+
+@{
+	ViewBag.Title = "Activity";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-container">
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			<h1 class="page-title">Timesheet
+			   
+				<small>Manage Activity</small>
+			</h1>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<a href="javascript:;"></a>
+					</li>
+					<li>
+						<span>@DateTime.UtcNow.ToLongDateString()</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="portlet light bordered">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-social-dribbble font-red"></i>
+						<span class="caption-subject font-red bold uppercase">Manage Activity</span>
+					</div>
+					<div class="actions">
+						<a href="~/Home/Detail">Back</a>
+					</div>
+				</div>
+
+				@if (ViewBag.Error != null)
+				{
+					<div class="alert alert-danger display-hide" style="display: block;">
+						<button class="close" data-close="alert"></button>
+						<span>@ViewBag.Error </span>
+					</div>
+				}
+
+
+				<div class="well">
+					<form method="post" id="form" class="form-horizontal">
+
+
+						<div class="form-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label">Job No</label>
+								<div class="col-md-4">
+									<input type="text" name="txtJobNo" id="txtJobNo" value="@Model._enq_mast.ord_no" disabled="disabled" placeholder="Job No" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">Customer Name</label>
+								<div class="col-md-4">
+									<input type="text" name="txtCustomerName" id="txtCustomerName" value="@Model._enq_mast.CustName" disabled="disabled" placeholder="Customer Name" class="form-control">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">Project Name</label>
+								<div class="col-md-4">
+									<textarea rows="4" cols="50" class="form-control" style="resize: none;" id="txtProjectName" disabled="disabled" name="txtProjectName" placeholder="Project Name">@Model._enq_mast.job_name</textarea>
+								</div>
+							</div>
+
+							<div class="form-group" style="display: none;">
+								<label class="col-md-3 control-label">Start Time</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control" id="txtStartTime" placeholder="Start Time">
+								</div>
+							</div>
+							<div class="form-group" style="display: none;">
+								<label class="col-md-3 control-label">End Time</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control" id="txtEndTime" placeholder="End Time">
+								</div>
+							</div>
+
+							<div class="form-group" style="display: none;">
+								<label class="col-md-3 control-label">Enquiry No</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control" value="@Model._enq_mast.doc_no" id="txtEnquiryNo" disabled="disabled" placeholder="Enquiry No">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">System</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control input-tags demo-default" id="input-tags" placeholder="System">
+								</div>
+							</div>
+							<div class="form-group"></div>
+							<div id="divPartialView">
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">Comments</label>
+								<div class="col-md-4">
+									<textarea rows="4" cols="50" class="form-control" style="resize: none;" id="txtComments" name="txtComments" placeholder="Comments"></textarea>
+								</div>
+							</div>
+							<div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-3 col-md-9">
+										<button type="button" id="btnSave" class="btn green">Save</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.autocomplete-items {
+		height: 200px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		position: absolute;
+		padding: 0px 0px 0px 15px;
+		border-bottom: none;
+		border-top: none;
+		z-index: 99;
+		top: 100%;
+		left: 0;
+		right: 0;
+	}
+
+		.autocomplete-items div {
+			padding: 10px;
+			cursor: pointer;
+			background-color: #fff;
+			border-bottom: 1px solid #d4d4d4;
+		}
+
+			.autocomplete-items div:hover {
+				/*when hovering an item:*/
+				background-color: DodgerBlue !important;
+				color: #ffffff;
+			}
+
+	.autocomplete-active {
+		/*when navigating through the items using the arrow keys:*/
+		background-color: DodgerBlue !important;
+		color: #ffffff;
+	}
+
+	.Outsourcing {
+		display: none;
+	}
+
+	.clickable {
+		cursor: pointer;
+		background: #ffff99;
+	}
+
+	.loader {
+		display: none;
+	}
+</style>
+
+<link href="~/Custom_Scripts/auto_complete/jquery.auto-complete.css" rel="stylesheet" />
+<script src="~/Custom_Scripts/auto_complete/jquery.auto-complete.js"></script>
+<script src="~/Custom_Scripts/multiple-select/selectize.js"></script>
+<link href="~/Custom_Scripts/multiple-select/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="~/jquery.loading-overlay.js"></script>
+<script>
+
+	var model = @Html.Raw(Json.Encode(Model._enq_tranList))
+
+
+
+
+	$('#input-tags').selectize({
+		maxItems: 1,
+		persist: false,
+		create: false,
+		valueField: 'jobsystemId',
+		labelField: 'jobsystemname',
+		searchField: 'jobsystemname',
+		options: model,
+		render: {
+			item: function (data, escape) {
+				return '<div>' + escape(data.jobsystemname) + '</div>';
+			}
+		},
+		onChange: function (values) {
+			$('.page-container').loader({
+				image: '../loader.gif'
+			});
+
+			var JobNo = $("#txtJobNo").val();
+			var _groupid = GetParameterValues('groupid');
+			var EnquiryNo = $("#txtEnquiryNo").val();
+			$.ajax({
+				type: "GET",
+				url: "/Home/ActivityPartialView",
+				data: { 'JobNo': JobNo, 'jobsystemId': values, 'EnquiryNo': EnquiryNo, 'groupid': _groupid },
+				contentType: "application/json; charset=utf-8",
+				datatype: "text/plain",
+				success: function (data) {
+					$('.page-container').loader('hide');
+					$("#divPartialView").html(data);
+
+				}
+			});
+		}
+	});
+
+	$(document).on("click", "#btnSave", function (e) {
+
+		if ($('#input-tags').val() == '') {
+			alert('Please select a system before proceed.');
+			e.preventDefault();
+			return false;
+		}
+
+		var _groupid = GetParameterValues('groupid');
+		var values = $("#input-tags").val();
+		var JobNo = $("#txtJobNo").val();
+		var comments = $("#txtComments").val();
+
+	   
+		$.ajax({
+			type: "POST",
+			url: "/Home/ActivityPartialCommentView",
+			data: JSON.stringify({ 'JobNo': JobNo, 'jobsystemId': values, 'groupid': _groupid, 'comments': comments }),
+			contentType: "application/json; charset=utf-8",
+			datatype: "text/plain",
+			success: function (data) {
+				e.preventDefault();
+				$(".popover").remove();
+				$("#divPartialView").html(data);
+			},
+			error: function (data) {
+				e.preventDefault();
+				$(".popover").remove();
+				$("#divPartialView").html(data);
+			}
+		});
+		return false;
+	});
+
+
+	$(document).on("click", "#btnPartialCancel", function (e) {
+		$(".popover").remove();
+	});
+
+
+	function GetParameterValues(param) {
+		var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for (var i = 0; i < url.length; i++) {
+			var urlparam = url[i].split('=');
+			if (urlparam[0] == param) {
+				return urlparam[1];
+			}
+		}
+	}
+
+	$(document).on("click", "#btnPartialSave", function (e) {
+
+		var _groupid = GetParameterValues('groupid');
+
+		var QtyItem = $("#txtQtyItem").val();
+		var QtyDone = $("#txtQtyDone").val();
+
+		var JobNo = $("#txtJobNo").val();
+		var EnquiryNo = $("#txtEnquiryNo").val();
+		var values = $("#input-tags").val();
+		var taskId = $("#txttskid").val();
+		var systemname = $('.selectize-dropdown-content').children('div.option.selected.active')[0].innerText;
+		var comments = $("#txtComments").val();
+
+		var Quantity = $(".popover #txtQuantity").val();
+		var Floor = $(".popover #txtFloorNo").val();
+
+		if (Quantity == '') {
+			alert('Please enter the Quantity');
+			return;
+		}
+
+		if (QtyDone == '') {
+			QtyDone = 0;
+		}
+
+		if (Quantity > (QtyItem - QtyDone)) {
+			alert('Please enter value less than Qty Item');
+			return;
+		}
+		$('.page-container').loader({
+			image: '../loader.gif'
+		});
+		$.ajax({
+			type: "POST",
+			url: "/Home/ActivityPartialView",
+			data: JSON.stringify({ 'TaskId': taskId, 'Qty': Quantity, 'Floor': Floor, 'JobNo': JobNo, 'jobsystemId': values, 'EnquiryNo': EnquiryNo, 'groupid': _groupid, 'systemname': systemname, 'comments': comments }),
+			contentType: "application/json; charset=utf-8",
+			datatype: "text/plain",
+			success: function (data) {
+				e.preventDefault();
+				$(".popover").remove();
+				$('.page-container').loader('hide');
+				$("#divPartialView").html(data);
+			},
+			error: function (data) {
+				e.preventDefault();
+				$(".popover").remove();
+				$('.page-container').loader('hide');
+				$("#divPartialView").html(data);
+
+			}
+		});
+		return false;
+	});
+
+	$(document).ajaxStart(function () {
+	    $('.page-container').loader({
+	        image: '../loader.gif'
+	    });
+	}).ajaxStop(function () {
+	    $('.page-container').loader('hide');
+	});
+
+
+</script>
+
+
+

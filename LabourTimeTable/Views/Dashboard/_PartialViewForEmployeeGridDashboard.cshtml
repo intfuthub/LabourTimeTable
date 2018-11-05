@@ -1,0 +1,82 @@
+﻿@model LabourTimeTable.Models.GridDashboardEmployeeDTO
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = null;
+}
+@{
+    var grid = new WebGrid(Model._joblabworkemplist, canPage: true, canSort: false, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title">Activity</h4>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div class="scroller" style="height: 300px" data-always-visible="1" data-rail-visible1="1">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Progress</h4>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="title"><b>Date:</b></label>
+                            <div class="col-md-7">
+                                <label class="col-md-12 control-label" for="title">@Model.jobdate.Value.ToString("dd/MM/yyyy")</label>
+                            </div>
+                            <label class="col-md-3 control-label" for="title"><b>Job No:</b></label>
+                            <div class="col-md-7">
+                                <label class="col-md-12 control-label" for="title">@Model.JobNo</label>
+                            </div>
+                            <label class="col-md-3 control-label" for="title"><b>System Name:</b></label>
+                            <div class="col-md-7">
+                                <label class="col-md-12 control-label" for="title">@Model.SystemName</label>
+                            </div>
+                            <label class="col-md-3 control-label" for="title"><b>Activities:</b></label>
+                            <div class="col-md-7">
+                                <label class="col-md-12 control-label" for="title">@Model.activity </label>
+                            </div>
+                            <label class="col-md-3 control-label" for="title"><b>Qty:</b></label>
+                            <div class="col-md-7">
+                                <label class="col-md-12 control-label" for="title">@Model.qty_item </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="margin-top: 3%;">
+                        <div class="table-responsive">
+                            @grid.GetHtml(tableStyle: "table table-striped table-bordered table-hover dataTable no-footer dtr-inline",
+                                        mode: WebGridPagerModes.All,
+                                        htmlAttributes: new { id = "grid" },
+                                        firstText: "First",
+                                        previousText: "Prev",
+                                        nextText: "Next",
+                                        lastText: "Last",
+                                        footerStyle: "table-pager",
+                                        columns: grid.Columns(
+                                        grid.Column(header: "No.", format: item => item.WebGrid.Rows.IndexOf(item) + 1
+                                        + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage)
+                                        * grid.RowsPerPage * grid.PageIndex),
+                                        grid.Column("empname", "Employee Name"),
+                                        grid.Column("Check In", format: (item) => string.Format("{0:hh:mm tt}", Convert.ToDateTime(item.fromtime).ToString("hh:mm tt"))),
+                                        grid.Column("Check Out", format: (item) => string.Format("{0:hh:mm tt}", item.totime == null ? "" : Convert.ToDateTime(item.totime).ToString("hh:mm tt")))))
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
+        </div>
+    </div>
+</div>
+
+<script src="~/theme/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="~/theme/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="~/theme/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+<script src="~/theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="~/theme/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+@*<script src="~/theme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>*@
+<script src="~/theme/assets/global/scripts/app.min.js" type="text/javascript"></script>
+

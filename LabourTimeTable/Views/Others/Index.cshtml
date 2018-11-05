@@ -1,0 +1,606 @@
+﻿@model LabourTimeTable.Models.LabourOtherDetailDTO
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+	<div class="clearfix">
+		<div class="btn-group btn-group btn-group-justified">
+			<a href="~/Home/Detail" class="btn btn-default">Project</a>
+			<a href="~/Complaint/Complaint" class="btn btn-default"><b>Complain</b> </a>
+			<a href="~/Others/Index" class="btn btn-default active" style="border-bottom: 4px solid #36c6d3;position: relative;" data-toggle="tab"><b>Other Activity</b> </a>
+		</div>
+	</div>
+
+
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			<h1 class="page-title">Other Project Activity
+				<small>Manage Other Project Activity Attendance</small>
+			</h1>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<a href="javascript:;"></a>
+					</li>
+					<li>
+						<span>@DateTime.UtcNow.ToLongDateString()</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="portlet light bordered">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="icon-social-dribbble font-red"></i>
+						<span class="caption-subject font-red bold uppercase">Manage Project Activity Attendance</span>
+					</div>
+				</div>
+				@if (ViewBag.Error != null)
+				{
+					<div class="alert alert-danger display-hide" style="display: block;">
+						<button class="close" data-close="alert"></button>
+						<span>@ViewBag.Error </span>
+					</div>
+				}
+				<div class="well">
+					<!-- BEGIN FORM-->
+					<form method="post" id="form" class="form-horizontal">
+						<div class="form-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label">Job No</label>
+								<div class="col-md-4">
+									<input type="text" name="txtJobNo" id="txtJobNo" autocomplete="off" disabled="disabled" placeholder="Job No" class="form-control autocomplete-input">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">Enquiry No</label>
+								<div class="col-md-4">
+									<input type="text" name="txtEnquiryNo" id="txtEnquiryNo" autocomplete="off" disabled="disabled" placeholder="Enquiry No" class="form-control autocomplete-input">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">Customer</label>
+								<div class="col-md-4">
+									<input type="text" name="txtCustomer" id="txtCustomer" autocomplete="off" disabled="disabled" placeholder="Customer" class="form-control autocomplete-input">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">Project Name</label>
+								<div class="col-md-4">
+									<textarea rows="4" cols="50" class="form-control" style="resize: none;" id="txtDescription" name="txtDescription" placeholder="Description"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">Department</label>
+								<div class="col-md-4">
+									<input type="text" name="txtDepartment" id="txtDepartment" autocomplete="off" disabled="disabled" placeholder="Department" class="form-control autocomplete-input">
+								</div>
+							</div>
+							<div class="form-group" id="divPurpose">
+								<label class="col-md-3 control-label">Purpose</label>
+								<div class="col-md-4">
+									<input type="text" name="txtPurpose" id="txtPurpose" autocomplete="off" disabled="disabled" placeholder="Purpose" class="form-control autocomplete-input">
+								</div>
+							</div>
+							<div class="form-group" id="divOthers">
+								<label class="col-md-3 control-label">Others</label>
+								<div class="col-md-4">
+									<textarea rows="4" cols="50" class="form-control" style="resize: none;" id="txtOthers" name="txtOthers" placeholder="Others"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">Team <span id="counter"></span></label>
+								<div class="col-md-4">
+									<input type="text" class="form-control input-tags demo-default" id="input-tags" disabled="disabled" placeholder="Team Members">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">Checkin Time</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control" id="txtDefaultTime" disabled="disabled" placeholder="Enter text">
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn green">CHECKIN</button>
+								</div>
+							</div>
+						</div>
+
+						<div id="floating-panel" style="display: none;">
+							<input id="latlng" type="text">
+							<input id="name" type="text">
+							@*<input id="adr_address" type="text" value="">*@
+							<input id="formatted_address" type="text">
+						</div>
+						<div id="map" style="display: none;"></div>
+					</form>
+
+					<!-- END FORM-->
+					<form method="post" id="form1" class="form-horizontal">
+						<div class="form-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label">Checkout Time</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control" id="txtDefaultCheckoutTime" disabled="disabled" placeholder="Enter text">
+								</div>
+							</div>
+						</div>
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" id="btnsubmit" class="btn green">CHECKOUT</button>
+									@*<a href="@Html.Action("Handover")" style="display:none;"  id="btnHandover" class="btn green">HANDOVER</a>*@
+								</div>
+							</div>
+						</div>
+					</form>
+					<div class="form-group"></div>
+					<div id="divPartialView2">
+						@Html.Partial("~/Views/Others/_PartialViewForOtherCheckIn.cshtml", Model)
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+
+	function initMap() {
+
+		var options = { enableHighAccuracy: true, timeout: 20000, maximumAge: 2000 };
+
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition, positionError, options);
+		}
+	}
+
+	function LatLng(latitude, longitude) {
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 25,
+			center: { lat: latitude, lng: longitude }
+		});
+		var geocoder = new google.maps.Geocoder;
+		var infowindow = new google.maps.InfoWindow;
+		geocodeLatLng(geocoder, map, infowindow);
+	}
+	function geocodeLatLng(geocoder, map, infowindow) {
+		var input = document.getElementById('latlng').value;
+		var latlngStr = input.split(',', 2);
+		var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+		geocoder.geocode({ 'location': latlng, 'region': 'UAE' }, function (results, status) {
+			if (status === 'OK') {
+				if (results[0]) {
+					map.setZoom(25);
+					var marker = new google.maps.Marker({
+						position: results[0].geometry.location,
+						map: map
+					});
+
+					var service = new google.maps.places.PlacesService(map);
+					var request = {
+						placeId: results[0].place_id
+					};
+					service.getDetails(request, function (place, status) {
+						if (status == google.maps.places.PlacesServiceStatus.OK) {
+							console.log(place.name);
+							console.log(place.adr_address);
+							console.log(place.formatted_address);
+							document.getElementById('name').value = place.name;
+							//document.getElementById('adr_address').value = place.adr_address;
+							document.getElementById('formatted_address').value = place.formatted_address;
+						}
+					});
+					infowindow.setContent(results[0].formatted_address);
+					infowindow.open(map, marker);
+				} else {
+					window.alert('No results found');
+				}
+			} else {
+				window.alert('Geocoder failed due to: ' + status);
+			}
+		});
+	}
+
+	function showPosition(position) {
+		var coordinates = position.coords;
+
+		var latitude = position.coords.latitude;
+		var longitude = position.coords.longitude;
+		document.getElementById('latlng').value = latitude + ', ' + longitude;
+		LatLng(latitude, longitude);
+	}
+
+	function positionError(position) {
+	}
+</script>
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRhSfZnKy-1wxL8xCX0kpRXUh1OXhcrOE&callback=initMap&&libraries=places">
+</script>
+
+
+
+
+
+<style>
+	.table-responsive > .table > tbody > tr > td, .table-responsive > .table > tbody > tr > th, .table-responsive > .table > tfoot > tr > td, .table-responsive > .table > tfoot > tr > th, .table-responsive > .table > thead > tr > td, .table-responsive > .table > thead > tr > th {
+		white-space: normal;
+	}
+
+	.loader {
+		display: none;
+	}
+
+	.table-pager > td {
+		padding-top: 70px;
+	}
+
+		.table-pager > td > a {
+			background-color: #f0f0f0;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			padding: 3px 7px;
+		}
+
+			.table-pager > td > a:hover {
+				/*background-color: #f0f0f0;*/
+				background-color: #4CAF90;
+			}
+
+	.btn-default.active, .btn-default:active, .btn-default:hover, .open > .btn-default.dropdown-toggle {
+		color: #333;
+		background-color: #ada5a5;
+		border-color: #ada5a5;
+	}
+</style>
+
+
+<script src="~/Custom_Scripts/multiple-select/selectize.js"></script>
+<link href="~/Custom_Scripts/multiple-select/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="~/jquery.loading-overlay.js"></script>
+
+@*<script src="~/theme/assets/global/plugins/jquery.min.js" type="text/javascript"></script>*@
+<link href="~/theme/assets/global/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" />
+<script src="~/theme/assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+@*<script src="~/theme/assets/global/scripts/app.min.js" type="text/javascript"></script>*@
+@*<script src="~/theme/assets/pages/scripts/form-icheck.min.js" type="text/javascript"></script>*@
+<script src="~/theme/assets/global/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js" type="text/javascript"></script>
+@*<script src="~/theme/assets/global/plugins/moment.min.js"></script>*@
+
+<script type="text/javascript" src="~/Moments/jstz-1.0.4.min.js"></script>
+<script type="text/javascript" src="~/Moments/moment.min.js"></script>
+<script type="text/javascript" src="~/Moments/moment-timezone.js"></script>
+<script type="text/javascript" src="~/Moments/moment-timezone-data.js"></script>
+
+
+<script src="~/serverDate.js"></script>
+<script>
+	var counter = 0;
+	var counter1 = 0;
+	$(document).ready(function () {
+		$('#divOthers').hide();
+
+		var checkoutFlag = @Html.Raw(Json.Encode(Model._TimesheetEnqGridPostDTO))
+		   $('#form1').hide();
+		$.each(checkoutFlag, function (index, item) {
+			if (item.is_checkout == false) {
+				$('#form').hide();
+				$('#form1').show();
+				return false;
+			}
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "/Others/GetProjectDetailList",
+			data: {},
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			success: function (Result) {
+
+				$('#txtEnquiryNo').removeAttr('disabled');
+				$('#txtDepartment').removeAttr('disabled');
+				$('#txtJobNo').removeAttr('disabled');
+				$('#input-tags').removeAttr('disabled');
+
+
+				$('#txtJobNo').selectize({
+					persist: false,
+					create: false,
+					maxItems: 1,
+					valueField: 'ord_no',
+					labelField: 'ord_no',
+					searchField: 'ord_no',
+					options: Result._enq_mastList,
+					render: {
+						item: function (data, escape) {
+							return '<div>' + escape(data.ord_no) + '</div>';
+						}
+					},
+					onChange: function (escape) {
+						$.each(Result._enq_mastList, function (index, values) {
+							if (Result._enq_mastList[index].ord_no === escape) {
+								$("#txtCustomer").val(Result._enq_mastList[index].CustName).attr('disabled', 'disabled');
+								$("#txtDescription").val(Result._enq_mastList[index].job_name).attr('disabled', 'disabled');
+								$('#txtEnquiryNo')[0].selectize.setValue(Result._enq_mastList[index].doc_no);
+							}
+						});
+					}
+				});
+
+				$('#txtEnquiryNo').selectize({
+					persist: false,
+					create: false,
+					maxItems: 1,
+					valueField: 'doc_no',
+					labelField: 'doc_no',
+					searchField: 'doc_no',
+					options: Result._enq_mastList,
+					render: {
+						item: function (data, escape) {
+							return '<div>' + escape(data.doc_no) + '</div>';
+						}
+					},
+					onChange: function (escape) {
+						$.each(Result._enq_mastList, function (index, values) {
+							if (Result._enq_mastList[index].doc_no === escape) {
+								$("#txtCustomer").val(Result._enq_mastList[index].CustName).attr('disabled', 'disabled');
+								$("#txtDescription").val(Result._enq_mastList[index].job_name).attr('disabled', 'disabled');
+
+							}
+						});
+					}
+				});
+
+				$('#txtDepartment').selectize({
+					persist: false,
+					create: false,
+					maxItems: 1,
+					valueField: 'Id',
+					labelField: 'ac_name',
+					searchField: 'ac_name',
+					options: Result._ac_deptList,
+					render: {
+						item: function (data, escape) {
+							return '<div>' + escape(data.ac_name) + '</div>';
+						}
+					},
+					onChange: function (escape) {
+
+						if (escape == 999) {
+							$('#divOthers').show();
+							$('#divPurpose').hide();
+						}
+						else {
+							$('#divOthers').hide();
+
+							$.ajax({
+								type: "POST",
+								url: "/Others/GetDepartmentActivity",
+								data: JSON.stringify({ 'Id': escape }),
+								contentType: "application/json; charset=utf-8",
+								dataType: "json",
+								success: function (xResult) {
+									$('#txtPurpose').selectize()[0].selectize.destroy();
+									$('#txtPurpose').removeAttr('disabled');
+									$('#txtPurpose').selectize({
+										persist: false,
+										create: false,
+										maxItems: 1,
+										valueField: 'ac_name',
+										labelField: 'ac_name',
+										searchField: 'ac_name',
+										options: xResult,
+										render: {
+											item: function (data, escape) {
+												return '<div>' + escape(data.ac_name) + '</div>';
+											}
+										}
+									});
+								}
+							});
+						}
+					}
+
+				});
+
+				$('#input-tags').selectize({
+					plugins: ['remove_button'],
+					persist: false,
+					create: false,
+					valueField: 'empID',
+					labelField: 'Firstname',
+					searchField: 'Firstname',
+					options: Result._ts_employee,
+					render: {
+						item: function (data, escape) {
+							$("#counter").text('(' + ++counter + ')');
+							if (counter == 0 || counter < 0) {
+								$("#counter").text('');
+							}
+							return '<div>' + escape(data.Firstname) + '</div>';
+						}
+					},
+					onDelete: function (values) {
+						$("#counter").text('(' + --counter + ')');
+						if (counter == 0 || counter < 0) {
+							$("#counter").text('');
+						}
+					}
+
+				});
+
+
+			}
+		});
+		ShowTime();
+	});
+
+	function ShowTime() {
+	    var current_time = moment().tz('Asia/Dubai').format('h:mm A');
+		$('#txtDefaultTime').val(current_time);
+		$('#txtDefaultCheckoutTime').val(current_time);
+		window.setTimeout("ShowTime()", 1000);//1000 miliseconds = 1 second
+	}
+
+
+	$('form').submit(function (e) {
+
+		if ($('#txtDepartment').val() === '') {
+			alert('Please enter the Department');
+			e.preventDefault();
+			return false;
+		}
+
+		if ($('#txtDepartment').val() === '999') {
+			if ($('#txtOthers').val() == '') {
+				alert('Please enter the Others');
+				e.preventDefault();
+				return false;
+			}
+		}
+		else {
+			if ($('#txtPurpose').val() == '') {
+				alert('Please enter the Purpose');
+				e.preventDefault();
+				return false;
+			}
+		}
+
+
+		var rest = "";
+		if ($('#txtOthers').val() != '') {
+			rest = $('#txtOthers').val();
+		}
+		else { rest = $('#txtPurpose').val(); }
+
+
+
+		$('.page-container').loader({
+			image: '../loader.gif'
+		});
+
+		//location
+
+		var location = {
+			"latlng": $('#latlng').val(),
+			"name": $('#name').val(),
+			"formatted_address": $('#formatted_address').val()
+		};
+
+		var arrayTeam = $('#input-tags').val().split(',');
+
+		var dt = new Date();
+		var time = new Date().toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' });
+		var TimesheetENQPostDTO = {
+			"EnquiryNo": $('#txtEnquiryNo').val(),
+			"Customer": $('#txtCustomer').val(),
+			"Department": $("#txtDepartment-selectized").parent().find('div').html(),
+			"Purpose": rest,
+			"ProjectName": $('#txtDescription').val(),
+			"Team": arrayTeam,
+			"Time": time,
+			"location": location
+		};
+		$.ajax({
+			url: '@Url.Action("Index")',
+			type: "POST",
+			datatype: "text/plain",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(TimesheetENQPostDTO),
+			success: function (result) {
+				window.location = window.location;
+				$('.page-container').loader('hide');
+			},
+			error: function (result, xhr) {
+				window.location = window.location;
+				$('.page-container').loader('hide');
+			}
+		});
+		return false;
+	});
+
+	$('#btnsubmit').click(function (event) {
+		$('.page-container').loader({
+			image: '../loader.gif'
+		});
+		event.preventDefault();
+		var CheckoutTime = $('#txtDefaultCheckoutTime').val()
+		$.ajax({
+			url: '@Url.Action("AllCheckOut")',
+			type: "POST",
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({ 'CheckoutTime': CheckoutTime }),
+			success: function (result) {
+				window.location = window.location;
+				$('.page-container').loader('hide');
+			},
+			error: function (result) {
+				window.location = window.location;
+				$('.page-container').loader('hide');
+			}
+		});
+		return false;
+	});
+
+
+	function confirmCheckout(emp_id) {
+		var CheckoutTime = $('#txtDefaultCheckoutTime').val()
+
+		CheckOutIndividual(emp_id, CheckoutTime);
+		$('.page-container').loader({
+			image: '../loader.gif'
+		});
+		//return false;
+	}
+
+
+	function CheckOutIndividual(emp_id, CheckoutTime) {
+		if (confirm('Are you sure you wish to checkout?')) {
+			$('.page-container').loader({
+				image: '../loader.gif'
+			});
+			$.ajax({
+				type: "POST",
+				url: '@Url.Action("IndividualCheckOut")',
+				data: JSON.stringify({ 'empid': emp_id, 'checkOutTime': CheckoutTime }),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				success: function (result) {
+					window.location = window.location;
+					$('.page-container').loader('hide');
+				},
+				error: function (result) {
+					window.location = window.location;
+					$('.page-container').loader('hide');
+				}
+			});
+		} else {
+			$('.page-container').loader('hide');
+		}
+	}
+
+	$(document).ajaxStart(function () {
+		$('.page-container').loader({
+			image: '../loader.gif'
+		});
+	}).ajaxStop(function () {
+		$('.page-container').loader('hide');
+	});
+
+
+
+
+</script>
